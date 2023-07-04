@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Outlet,
 } from "react-router-dom";
-import Subayeel from "./Components/Subayeel";
+
 import Layout from "./Components/Layout";
 function App() {
   return (
