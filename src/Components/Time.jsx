@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Card from './Card';
+import CityTime from './CityTime';
 
 const Time = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -34,10 +34,24 @@ const Time = () => {
             <h1>Time now</h1>
             <div>{formattedTime}</div>
             <div>{formattedDate}</div>
-            <Card cityname={"New York"} api_city={"New_York"}/>
-            <Card cityname={"Chicago, Illinois"} api_city={"Chicago"}/>
-            <Card cityname={"Denver, Colorado"} api_city={"Denver"}/>
-            <Card cityname={"Los Angeles, California"} api_city={"Los_Angeles"}/>
+            <div>  
+                <ul>
+                    <CityTime cityName="New York" timezoneOffset={-570} />
+                    <CityTime cityName="Chicago" timezoneOffset={-630} />
+                    <CityTime cityName="Denver" timezoneOffset={-690} />
+                    <CityTime cityName="Los Angeles" timezoneOffset={-750} />
+                    <CityTime cityName="Phoenix" timezoneOffset={-750} />
+                    <CityTime cityName="Alaska" timezoneOffset={-810} />
+                    <CityTime cityName="Hawaii" timezoneOffset={-930} />
+                    <CityTime cityName="London" timezoneOffset={-270} />
+                    <CityTime cityName="Sydney" timezoneOffset={270} />
+                    <CityTime cityName="Philippines" timezoneOffset={150} />
+                    <CityTime cityName="Singapore" timezoneOffset={150} />
+                    <CityTime cityName="Japan" timezoneOffset={210} />
+                    <CityTime cityName="Shanghai" timezoneOffset={150} />
+                    <CityTime cityName="Germany" timezoneOffset={-210} />
+                </ul>
+            </div>
          </>
   );
 };
