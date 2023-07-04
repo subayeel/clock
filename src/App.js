@@ -1,5 +1,6 @@
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Subayeel from "./Components/Subayeel";
+import Timer from "./Components/Timer";
 function App() {
   return (
     <div className="App">
@@ -7,6 +8,7 @@ function App() {
         <Routes>
           {/* Add your Components here */}
           <Route path="/subayeel" element={<Subayeel />}></Route>
+          <Route path="/timer" element={<Timer />}></Route>
         </Routes>
       </Router>
     </div>
