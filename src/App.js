@@ -1,12 +1,19 @@
-import { Routes, Route, Router } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter as Router,
+  Outlet,
+} from "react-router-dom";
 import Subayeel from "./Components/Subayeel";
+import Layout from "./Components/Layout";
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          {/* Add your Components here */}
-          <Route path="/subayeel" element={<Subayeel />}></Route>
+          <Route path="/" element={<Layout />}>
+            {/* Add your Components here */}
+          </Route>
         </Routes>
       </Router>
     </div>
