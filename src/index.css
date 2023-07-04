@@ -20,6 +20,113 @@ code {
     monospace;
 }
 
+
+.timer{
+  text-align: center;
+  font-weight: bold;
+  font-size: 48px;
+  color: #333;
+}
+
+.main-timer-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.timer-btn{
+  text-align: center;
+}
+
+.timer-title{
+  text-align: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.modal-form input,
+.modal-form select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+}
+
+.modal-footer {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.modal-footer button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-footer button:hover {
+  background-color: #45a049;
+}
+
+.modal-close {
+  cursor: pointer;
+  color: #aaa;
+  font-size: 20px;
+}
+
+.modal-close:hover {
+  color: #555;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.timer-btn{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+=======
 nav {
   display: flex;
   align-items: center;
@@ -107,4 +214,5 @@ nav header ul li a:hover {
     width: 150px;
     margin: auto;
   }
+
 }
