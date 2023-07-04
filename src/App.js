@@ -1,15 +1,7 @@
-
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Subayeel from "./Components/Subayeel";
 import Timer from "./Components/Timer";
 import Stopwatch from "./Components/stopwatch";
-
-import {
-  Routes,
-  Route,
-  BrowserRouter as Router,
-  Outlet,
-} from "react-router-dom";
 
 import Layout from "./Components/Layout";
 
@@ -19,9 +11,12 @@ function App() {
       <Router>
         <Routes>
           {/* Add your Components here */}
-          <Route path="/Stopwatch" element={<Stopwatch />}></Route>
-          <Route path="/subayeel" element={<Subayeel />}></Route>
-          <Route path="/timer" element={<Timer />}></Route>
+
+          <Route path="/" element={<Layout />}>
+            <Route path="/Stopwatch" element={<Stopwatch />}></Route>
+            <Route path="/subayeel" element={<Subayeel />}></Route>
+            <Route path="/timer" element={<Timer />}></Route>
+          </Route>
         </Routes>
       </Router>
     </div>
