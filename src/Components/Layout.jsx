@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import clock from "../Assets/Images/clock.png";
 function Layout() {
   const [isDark, setDark] = useState(localStorage.getItem("dark") || false);
@@ -27,8 +27,7 @@ function Layout() {
           </ul>
         </header>
       </nav>
-      <aside></aside>
-      <footer></footer>
+      <Outlet/>
     </>
   );
 }
