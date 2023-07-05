@@ -44,42 +44,44 @@ function Stopwatch() {
   };
 
   const formatTime = (ms) => {
-    const minutes = Math.floor(ms / 60000);
+    const hours = Math.floor(ms / 3600000);
+    const minutes = Math.floor((ms % 3600000) / 60000);
     const seconds = Math.floor((ms % 60000) / 1000);
-    const centiseconds = Math.floor(((ms % 60000) % 1000) / 10);
-
-    return `${minutes.toString().padStart(2, '0')}:${seconds
-      .toString().padStart(2, '0')}.${centiseconds.toString().padStart(2, '0')}`;
+    const milliseconds = Math.floor(((ms % 60000) % 1000) / 10);
+    
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
   };
 
   return (
-    <div class="container">
-      <p class="time">{formatTime(time)}</p>
+    <div className="container">
+      <p className="time">{formatTime(time)}</p>
       {isStoped && (
         <>
-          <button class="btn reset" onClick={reset}>Reset</button>
-          <button class="btn start" onClick={start}>Start</button>
+          <button className="btn reset" onClick={reset}>Reset</button>
+          <button className="btn start" onClick={start}>Start</button>
         </>
       )}
       {isStarted && (
         <>
-          <button class="btn lap" onClick={recordLap}>Lap</button>
-          <button class="btn stop" onClick={stop}>Stop</button>
+          <button className="btn lap" onClick={recordLap}>Lap</button>
+          <button className="btn stop" onClick={stop}>Stop</button>
         </>
       )}
       {laps.length > 0 && (
-        <div class="lap-field">
+        <div className="lap-field">
           <table>
-            <tr>
-              <th>LAP</th>
-              <th>TIME</th>
-            </tr>
-            {laps.map((lap) => (
-              <tr key={lap.lapNumber}>
-                <td>{lap.lapNumber}</td>
-                <td> {formatTime(lap.lapTime)}</td>
+            <tbody>
+              <tr>
+                <th>LAP</th>
+                <th>TIME</th>
               </tr>
-            ))}
+              {laps.slice().reverse().map((lap, index) => (
+                <tr key={index}>
+                  <td>{lap.lapNumber}</td>
+                  <td> {formatTime(lap.lapTime)}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       )}
