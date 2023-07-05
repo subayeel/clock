@@ -1,9 +1,10 @@
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
 import Subayeel from "./Components/Subayeel";
-import Timer from "./Components/Timer";
-import Stopwatch from "./Components/stopwatch";
+import Time from "./Components/Time";
+import Layout from "./Components/Layout"
+import Timer from "./Components/Time";
+import Stopwatch from "./Components/stopwatch"
 
-import Layout from "./Components/Layout";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/Stopwatch" element={<Stopwatch />}></Route>
             <Route path="/subayeel" element={<Subayeel />}></Route>
             <Route path="/timer" element={<Timer />}></Route>
+            <Route path="/time" element={<Time />}></Route>
           </Route>
         </Routes>
       </Router>
