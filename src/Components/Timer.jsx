@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../styles/Timer.css";
 import Modal from "react-modal";
 
 const Timer = () => {
@@ -8,10 +9,11 @@ const Timer = () => {
   const [seconds, setSeconds] = useState("00");
   const [title, setTitle] = useState("");
   const [timerActive, setTimerActive] = useState(false);
-  const [remainingTime, setRemainingTime] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [totalSeconds, setTotalSeconds] = useState("");
   const [preset, setPreset] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [timerInterval, setTimerInterval] = useState(null);
   //   let currentTimer = "00:00:00";
 
   const handleOpenModal = () => {
@@ -24,16 +26,16 @@ const Timer = () => {
 
   const resetTimer = (event) => {
     event.preventDefault();
-    setRemainingTime(0);
+    clearInterval(timerInterval);
+    setSelectedOption('');
     setSubmitted(false);
   };
 
-  const setTimer = (event) => {
+  const handleTimer = (event) => {
     event.preventDefault();
     setTotalSeconds(
       parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds)
     );
-    setRemainingTime(totalSeconds);
     setSubmitted(true);
     handleCloseModal();
   };
@@ -45,19 +47,20 @@ const Timer = () => {
   };
 
   const startTimer = (totalSeconds) => {
-    setRemainingTime(totalSeconds);
+    setTotalSeconds(totalSeconds);
     setTimerActive(true);
 
     // Start the timer countdown
-    const timerInterval = setInterval(() => {
-      setRemainingTime((prevTime) => prevTime - 1);
+    const interval = setInterval(() => {
+      setTotalSeconds((prevTime) => prevTime - 1);
     }, 1000);
+    setTimerInterval(interval)
 
     // Clear the interval when the timer is completed
-    setTimerTimeout(timerInterval, totalSeconds * 1000);
+    setTimerTimeout(totalSeconds * 1000);
   };
 
-  const setTimerTimeout = (timerInterval, timeoutDuration) => {
+  const setTimerTimeout = ( timeoutDuration) => {
     setTimeout(() => {
       clearInterval(timerInterval);
       setTimerActive(false);
@@ -76,14 +79,27 @@ const Timer = () => {
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  const handleOptionChange = (event) => {
+    const selectedValue = event.target.value;
+    if (selectedOption === selectedValue) {
+      setSelectedOption('');
+      setTotalSeconds(0);
+      setSubmitted(false)
+      console.log('entered')
+    } else {
+      setSelectedOption(selectedValue);
+      setTotalSeconds(parseInt(selectedValue) * 60);
+      setSubmitted(true);
+    }
+  };
+
   return (
     <>
       <div className="main-timer-container">
         {submitted && <p className="timer-title">{title}</p>}
-        {/* <h2>{`${hours} : ${minutes} : ${seconds}`}</h2> */}
         {submitted ? (
           <div>
-            <p className="timer">{formatTime(remainingTime)}</p>
+            <p className="timer">{formatTime(totalSeconds)}</p>
           </div>
         ) : (
           <div>
@@ -91,8 +107,31 @@ const Timer = () => {
           </div>
         )}
         <div className="preset">
-          <div className={`preset-ten ${timerActive ? 'active' : ''}`}>00:10:00</div>
-          <div className="preset-twenty">00:20:00</div>
+          {/* <div onClick={(event) => handlePresetTimer(event)} value='00:10:00' className={`preset-ten ${timerActive ? 'active' : ''}`}>00:10:00</div>
+          <div className={`preset-twenty ${timerActive ? 'active' : ''}`}>00:20:00</div> */}
+
+          <div>
+            <input
+              type="checkbox"
+              id="preset-ten"
+              value="10"
+              checked={selectedOption === "10"}
+              onChange={handleOptionChange}
+              hidden
+            />
+            <label className={`${selectedOption === '10' ? 'active' : ''}`} htmlFor="preset-ten">00:10:00</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="preset-twenty"
+              value="20"
+              checked={selectedOption === "20"}
+              onChange={handleOptionChange}
+              hidden
+            />
+            <label className={`${selectedOption === '20' ? 'active' : ''}`} htmlFor="preset-twenty">00:20:00</label>
+          </div>
         </div>
         <div>
           {submitted ? (
@@ -136,7 +175,7 @@ const Timer = () => {
             &times;
           </span>
         </div>
-        <form className="modal-form" onSubmit={setTimer}>
+        <form className="modal-form" onSubmit={handleTimer}>
           <label>
             Title:
             <input
