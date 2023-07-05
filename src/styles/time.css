@@ -1,0 +1,46 @@
+.cardContainerWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    gap: 40px;
+  }
+  
+  .cardContainer {
+    border: 2px solid black;
+    width: 250px;
+  }
+  
+  .cityTime {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 2em;
+  }
+  
+  .centerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+  }
+  
+  .formattedTime {
+   font-size:5em;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .formattedDate {
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

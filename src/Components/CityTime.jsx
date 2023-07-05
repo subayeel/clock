@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
+import '../index.css'
 
 const getTimeByTimezoneOffset = (timezoneOffset) => {
   const currentTime = new Date();
+  console.log(timezoneOffset);
   const offsetMilliseconds = timezoneOffset * 60 * 1000;
   const cityTime = new Date(currentTime.getTime() + offsetMilliseconds);
   return cityTime.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
@@ -22,9 +23,17 @@ const CityTime = ({ cityName, timezoneOffset }) => {
   }, [timezoneOffset]);
 
   return (
-    <li>
-      {cityName}: {cityTime}
-    </li>
+    <>
+        <div class="cardContainer">
+          <div>{cityName}</div>
+           <hr></hr>
+             <div class="cityTime">
+             <div>{cityTime}</div>
+           </div>
+        </div>
+
+        
+    </>
   );
 };
 
