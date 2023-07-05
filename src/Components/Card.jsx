@@ -24,7 +24,7 @@ function Card({ Hour, Minute, Type, id, data, setData }) {
           <button className="del-btn" onClick={() => handleDelete(id)}>
             Remove{" "}
             <DeleteForeverIcon
-              sx={{ backgroundColor: "red", marginTop: "-3px" }}
+              sx={{ backgroundColor: "rgb(251, 72, 72)", marginTop: "-3px" }}
             />
           </button>
         </div>

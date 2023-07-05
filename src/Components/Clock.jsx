@@ -4,10 +4,13 @@ import Card from "./Card";
 import music1 from "../asset/music2.mp3";
 const Clock = ({ show, AlarmData }) => {
   // const [index, setIndex] = useState(0);
+
   var index = 0;
+  let id = 0;
   var audioElement = new Audio();
   audioElement.src = music1;
   audioElement.loop = true;
+  let isActive = true;
   const [date, setDate] = useState(new Date());
   // const [alaram, setalaram] = useState({
   //   hour: 0,
@@ -31,16 +34,21 @@ const Clock = ({ show, AlarmData }) => {
   }, []);
   function checkAlarm() {
     index = index + 1;
+    id = index;
     const check = new Date();
-    console.log(check.toLocaleTimeString().substring(0, 4), HandleTime());
+    const str = check.toLocaleTimeString().split(" ")[0];
+    console.log(str.substring(0, str.length - 3), HandleTime());
     console.log(check.toLocaleTimeString().substring(8, 10), HandleType());
     if (
-      check.toLocaleTimeString().substring(0, 4) == HandleTime() &&
+      str.substring(0, str.length - 3) == HandleTime() &&
       check.toLocaleTimeString().substring(8, 10) == HandleType()
     ) {
+      console.log("came here");
       audioElement.play();
-      alert("");
-      audioElement.loop = false;
+      alert("Close");
+      audioElement.pause();
+
+      // RemoveElemFrom(id);
     }
   }
   function HandleTime() {
@@ -58,7 +66,15 @@ const Clock = ({ show, AlarmData }) => {
     }
     return `${AlarmData[index]?.Type}`;
   }
-
+  // function RemoveElemFrom(id) {
+  //   let arr = JSON.parse(localStorage.getItem("item") || "[]");
+  //   arr = arr.filter((item, indd) => {
+  //     if (indd == id) {
+  //       return item;
+  //     }
+  //   });
+  //   localStorage.setItem("item", JSON.stringify(arr));
+  // }
   const options = { weekday: "long", month: "long", day: "numeric" };
   const formattedDate = date.toLocaleDateString(undefined, options);
   const formattedTime = date.toLocaleTimeString();
@@ -79,7 +95,7 @@ const Clock = ({ show, AlarmData }) => {
         <div className="alarm_time">{formattedTime}</div>
         <div className="alarm_day">{formattedDate}</div>
         <button onClick={() => show()} className="alarm_set_btn">
-          Set Alaram
+          Set Alarm
         </button>
       </div>
     </>

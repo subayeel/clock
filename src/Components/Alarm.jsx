@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Card from "./Card";
+import "../styles/alarm.css";
 const initialState = { Hour: 11, Minute: 15, Type: "am" };
 const reducer = (state, action) => {
   let newState;
@@ -76,7 +77,7 @@ const Alarm = () => {
     JSON.parse(localStorage.getItem("item") || [])
   );
   const [modal, setModal] = useState(false);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -179,23 +180,25 @@ const Alarm = () => {
           <Clock show={handleShow} AlarmData={data} />
         </div>
         <div className="right_containerr">
-          <h1 className="heading_myalarm">My Alarm</h1>
-          {data && (
-            <div className="right_container">
-              {data?.map((obj, i) => {
-                if (i != 0)
-                  return (
-                    <Card
-                      key={i}
-                      id={i}
-                      data={data}
-                      setData={setData}
-                      {...obj}
-                    />
-                  );
-              })}
-            </div>
-          )}
+          <div className="alarm_card_containerr">
+            <h1 className="heading_myalarm">My Alarm</h1>
+            {data && (
+              <div className="right_container">
+                {data?.map((obj, i) => {
+                  if (i != 0)
+                    return (
+                      <Card
+                        key={i}
+                        id={i}
+                        data={data}
+                        setData={setData}
+                        {...obj}
+                      />
+                    );
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
