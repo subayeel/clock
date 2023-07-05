@@ -1,4 +1,9 @@
 import React, { useState, useRef } from 'react';
+import { VscDebugStart } from 'react-icons/vsc';
+import { BsStop } from 'react-icons/bs';
+import { LuTimerReset } from 'react-icons/lu';
+import { PiFlagPennant } from 'react-icons/pi';
+import '../styles/stopwatchstyle.css'
 
 function Stopwatch() {
   const [isRunning, setIsRunning] = useState(false);
@@ -6,6 +11,7 @@ function Stopwatch() {
   const [laps, setLaps] = useState([]);
   const [isStarted, setIsStarted] = useState(false);
   const [isStoped, setIsStoped] = useState(true);
+  const [isAnimation, setAnimation] = useState(false);
   const intervalRef = useRef(null);
 
   const start = () => {
@@ -16,6 +22,7 @@ function Stopwatch() {
       setIsRunning(true);
       setIsStarted(true);
       setIsStoped(false);
+      setAnimation(true);
     }
   };
 
@@ -34,6 +41,7 @@ function Stopwatch() {
     setTime(0);
     setLaps([]);
     setIsStarted(false);
+    setAnimation(false);
   };
 
   const recordLap = () => {
@@ -48,43 +56,49 @@ function Stopwatch() {
     const minutes = Math.floor((ms % 3600000) / 60000);
     const seconds = Math.floor((ms % 60000) / 1000);
     const milliseconds = Math.floor(((ms % 60000) % 1000) / 10);
-    
+
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
   };
 
   return (
-    <div className="container">
-      <p className="time">{formatTime(time)}</p>
-      {isStoped && (
-        <>
-          <button className="btn reset" onClick={reset}>Reset</button>
-          <button className="btn start" onClick={start}>Start</button>
-        </>
-      )}
-      {isStarted && (
-        <>
-          <button className="btn lap" onClick={recordLap}>Lap</button>
-          <button className="btn stop" onClick={stop}>Stop</button>
-        </>
-      )}
-      {laps.length > 0 && (
-        <div className="lap-field">
-          <table>
-            <tbody>
-              <tr>
-                <th>LAP</th>
-                <th>TIME</th>
-              </tr>
-              {laps.slice().reverse().map((lap, index) => (
-                <tr key={index}>
-                  <td>{lap.lapNumber}</td>
-                  <td> {formatTime(lap.lapTime)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    <div className='container'>
+      <div className='watch'>
+        <div className='outer-circle' id={isAnimation ? 'animation-bg' : ''}>
+          <div className='inner-circle'>
+            <p className="time">{formatTime(time)}</p>
+          </div>
         </div>
-      )}
+        <div className='button-wrapper'>
+          {isStoped && (
+            <>
+              <button className="btn reset" onClick={reset}><LuTimerReset size='25px' color='blue' /></button>
+              <button className="btn start" onClick={start}><VscDebugStart size='25px' color='blue' /></button>
+            </>
+          )}
+          {isStarted && (
+            <>
+              <button className="btn lap" onClick={recordLap}><PiFlagPennant size='25px' color='blue' /></button>
+              <button className="btn stop" onClick={stop}><BsStop size='25px' color='blue' /></button>
+            </>
+          )}
+        </div>
+        {laps.length > 0 && (
+          <>
+            <div className='lap-heading'>
+              <span className='lap-name'>LAP</span>
+              <span className='time-name'>TIME</span>
+            </div>
+            <ul className='laps'>
+              {laps.slice().reverse().map((lap, index) => (
+                <li className='lap-items' key={index}>
+                  <span className='number'>{lap.lapNumber}</span>
+                  <span className='time-stamp'>{formatTime(lap.lapTime)}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
     </div>
   );
 }
