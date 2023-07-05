@@ -12,13 +12,6 @@ code {
     monospace;
 }
 
-.timer{
-  text-align: center;
-  font-weight: bold;
-  font-size: 48px;
-  color: #333;
-}
-
 .main-timer-container{
   position: absolute;
   top: 50%;
@@ -26,12 +19,50 @@ code {
   transform: translate(-50%, -50%);
 }
 
+.main-timer-container > div{
+  margin: 20px 0;
+}
+
+.timer{
+  text-align: center;
+  font-weight: bold;
+  font-size: 48px;
+  color: #333;
+  margin: 0;
+}
+
+.preset{
+  display: flex;
+  justify-content: space-around;
+}
+
+.preset div{
+  background-color: #aaa;
+  cursor: pointer;
+  padding: 30px 12px;
+  border-radius: 50%;
+}
 .timer-btn{
   text-align: center;
 }
 
 .timer-title{
   text-align: center;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.timer-btn{
+  background-color: #4CAF50;
+  cursor: pointer;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
 }
 
 .modal-content {
@@ -103,18 +134,4 @@ code {
 
 .modal-close:hover {
   color: #555;
-}
-
-.btn-container{
-  display: flex;
-  justify-content: center;
-}
-
-.timer-btn{
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  margin: 0 10px;
-  border: none;
-  border-radius: 4px;
 }
