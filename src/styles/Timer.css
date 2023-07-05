@@ -15,7 +15,7 @@
 }
 
 .main-timer-container div {
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .timer-btn {
@@ -68,6 +68,36 @@ select {
   margin-right: 10px; /* Add spacing between the dropdowns */
 }
 
+.progress-bar-container {
+  width: 200px;
+  height: 200px;
+}
+
+.progress-bar-container .CircularProgressbar {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-bar-container .CircularProgressbar .CircularProgressbar-path {
+  stroke: var(--darkBlue);
+}
+
+.progress-bar-container .CircularProgressbar .CircularProgressbar-trail {
+  stroke: var(--salmon);
+}
+
+.progress-bar-container .CircularProgressbar .CircularProgressbar-text {
+  fill: var(--darkBlue);
+  font-size: 20px;
+}
+
+.progress-bar-filled {
+  width: 200px;
+  height: 200px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
 .modal-content {
   position: absolute;
   top: 50%;
@@ -103,18 +133,18 @@ select {
   border: 1px solid red;
 }
 
-.modal-header h2{
-    border: 1px solid red;
-    margin-top: 0;
+.modal-header h2 {
+  border: 1px solid red;
+  margin-top: 0;
 }
 
-.modal-header span{
-    border: 1px solid red;
-    margin-top: 0;
+.modal-header span {
+  border: 1px solid red;
+  margin-top: 0;
 }
 
 .modal-form .time-input {
-    display: flex;
+  display: flex;
 }
 
 .modal-form label {

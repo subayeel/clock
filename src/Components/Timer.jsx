@@ -4,6 +4,8 @@ import Modal from "react-modal";
 import tenBeepSound from "../Assets/audio/tenSecBeep.mp3";
 import threeBeepSound from "../Assets/audio/threeSecBeep.mp3";
 import buzzerSound from "../Assets/audio/buzzer.mp3";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const Timer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +34,7 @@ const Timer = () => {
   const resetTimer = (event) => {
     event.preventDefault();
     clearInterval(timerInterval);
+    setTotalSeconds(0)
     setSelectedOption("");
     setSubmitted(false);
   };
@@ -75,6 +78,7 @@ const Timer = () => {
         } else if (newTime > 3 && newTime <= 10) {
           tenBeep.play();
         }
+        console.log(newTime); // Threshold value below which the progress bar appears filled
         return newTime >= 0 ? newTime : 0;
       });
     }, 1000);
@@ -110,12 +114,22 @@ const Timer = () => {
       <div className="main-timer-container">
         {submitted && <p className="timer-title">{title}</p>}
         {submitted ? (
-          <div>
-            <p className="timer">{formatTime(totalSeconds)}</p>
+          <div className="progress-bar-container">
+            {/* <p className="timer">{formatTime(totalSeconds)}</p> */}
+            <CircularProgressbar
+              value={totalSeconds}
+              text={formatTime(totalSeconds)}
+              strokeWidth={2}
+            />
           </div>
         ) : (
-          <div>
-            <p className="timer">{`00:00:00`}</p>
+          <div className="progress-bar-container">
+            {/* <p className="timer">{`00:00:00`}</p> */}
+            <CircularProgressbar
+              value={totalSeconds}
+              text={`00:00:00`}
+              strokeWidth={2}
+            />
           </div>
         )}
         <div className="preset">
