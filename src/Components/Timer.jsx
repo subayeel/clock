@@ -57,11 +57,11 @@ const Timer = () => {
         {/* <h2>{`${hours} : ${minutes} : ${seconds}`}</h2> */}
         {timerActive ? (
           <div>
-            <h2 className="timer">{formatTime(remainingTime)}</h2>
+            <p className="timer">{formatTime(remainingTime)}</p>
           </div>
         ) : (
           <div>
-            <h2 className="timer">{`00 : 00 : 00`}</h2>
+            <p className="timer">{`00:00:00`}</p>
           </div>
         )}
         <div>
