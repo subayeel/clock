@@ -17,7 +17,6 @@ function App() {
 
           <Route path="/" element={<Layout />}>
             <Route path="/Stopwatch" element={<Stopwatch />}></Route>
-
             <Route path="/timer" element={<Timer />}></Route>
             <Route path="/alarm" element={<Alarm />}></Route>
             <Route path="/time" element={<Time />}></Route>
