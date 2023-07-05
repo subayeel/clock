@@ -22,12 +22,12 @@ function Layout() {
               <Link to="/timer">Timer</Link>
             </li>
             <li>
-              <Link to="/alarmclock">Alarmclock</Link>
+              <Link to="/alarm">Alarmclock</Link>
             </li>
           </ul>
         </header>
       </nav>
-      <Outlet/>
+      <Outlet />
     </>
   );
 }
