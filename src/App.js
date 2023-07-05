@@ -18,8 +18,8 @@ function App() {
             <Route path="/Stopwatch" element={<Stopwatch />}></Route>
             <Route path="/subayeel" element={<Subayeel />}></Route>
             <Route path="/timer" element={<Timer />}></Route>
+            <Route path="/time" element={<Time />}></Route>
           </Route>
-          <Route path="/time" element={<Time />}></Route>
         </Routes>
       </Router>
     </div>

@@ -6,7 +6,7 @@ const getTimeByTimezoneOffset = (timezoneOffset) => {
   console.log(timezoneOffset);
   const offsetMilliseconds = timezoneOffset * 60 * 1000;
   const cityTime = new Date(currentTime.getTime() + offsetMilliseconds);
-  return cityTime.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
+  return cityTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
 };
 
 const CityTime = ({ cityName, timezoneOffset }) => {
@@ -25,8 +25,7 @@ const CityTime = ({ cityName, timezoneOffset }) => {
   return (
     <>
         <div class="cardContainer">
-          <div>{cityName}</div>
-           <hr></hr>
+          <div className='cityName'>{cityName}</div>
              <div class="cityTime">
              <div>{cityTime}</div>
            </div>

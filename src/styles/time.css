@@ -5,42 +5,64 @@
     gap: 40px;
   }
   
-  .cardContainer {
-    border: 2px solid black;
+.cardContainer {
     width: 250px;
-  }
+    background-color: white;
+}
   
-  .cityTime {
+.cityTime {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100px;
     font-size: 2em;
-  }
+    font-family: Digital;
+    color: var(--darkBlue)
+}
   
-  .centerContainer{
+.centerContainer{
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    /* border: 2px solid red; */
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
   
-  .heading {
+.heading {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2em;
-  }
+    color: var(--darkBlue);
+}
   
-  .formattedTime {
-   font-size:5em;
-   display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .formattedDate {
-    font-size: 3em;
+.formattedTime {
+    font-size:5em;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    font-family: Digital;
+    color: var(--darkBlue);
+}
+  
+.formattedDate {
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--darkBlue);
+}
+
+.cityName{
+    color: white;
+    text-align: center;
+    justify-content: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background-color: var(--darkBlue);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+  
