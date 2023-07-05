@@ -9,6 +9,9 @@ const Timer = () => {
   const [title, setTitle] = useState("");
   const [timerActive, setTimerActive] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  const [totalSeconds, setTotalSeconds] = useState("");
+  const [preset, setPreset] = useState(false);
   //   let currentTimer = "00:00:00";
 
   const handleOpenModal = () => {
@@ -19,13 +22,31 @@ const Timer = () => {
     setIsOpen(false);
   };
 
+  const resetTimer = (event) => {
+    event.preventDefault();
+    setRemainingTime(0);
+    setSubmitted(false);
+  };
+
+  const setTimer = (event) => {
+    event.preventDefault();
+    setTotalSeconds(
+      parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds)
+    );
+    setRemainingTime(totalSeconds);
+    setSubmitted(true);
+    handleCloseModal();
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const totalSeconds =
-      parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+    // const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+    startTimer(totalSeconds);
+  };
+
+  const startTimer = (totalSeconds) => {
     setRemainingTime(totalSeconds);
     setTimerActive(true);
-    handleCloseModal();
 
     // Start the timer countdown
     const timerInterval = setInterval(() => {
@@ -33,11 +54,16 @@ const Timer = () => {
     }, 1000);
 
     // Clear the interval when the timer is completed
+    setTimerTimeout(timerInterval, totalSeconds * 1000);
+  };
+
+  const setTimerTimeout = (timerInterval, timeoutDuration) => {
     setTimeout(() => {
       clearInterval(timerInterval);
       setTimerActive(false);
-      alert("Timer completed!");
-    }, totalSeconds * 1000);
+      setSubmitted(false);
+      console.log("Timer completed!");
+    }, timeoutDuration);
   };
 
   const formatTime = (time) => {
@@ -53,9 +79,9 @@ const Timer = () => {
   return (
     <>
       <div className="main-timer-container">
-        {timerActive && <p className="timer-title">{title}</p>}
+        {submitted && <p className="timer-title">{title}</p>}
         {/* <h2>{`${hours} : ${minutes} : ${seconds}`}</h2> */}
-        {timerActive ? (
+        {submitted ? (
           <div>
             <p className="timer">{formatTime(remainingTime)}</p>
           </div>
@@ -64,16 +90,25 @@ const Timer = () => {
             <p className="timer">{`00:00:00`}</p>
           </div>
         )}
+        <div className="preset">
+          <div className={`preset-ten ${timerActive ? 'active' : ''}`}>00:10:00</div>
+          <div className="preset-twenty">00:20:00</div>
+        </div>
         <div>
-          {timerActive ? (
+          {submitted ? (
             <>
               <div className="btn-container">
                 <div>
-                  <button className="timer-btn">Edit Timer</button>
+                  <button className="timer-btn">Edit</button>
                 </div>
                 <div>
-                  <button className="timer-btn" disabled={timerActive}>
+                  <button onClick={resetTimer} className="timer-btn">
                     Reset
+                  </button>
+                </div>
+                <div>
+                  <button onClick={handleSubmit} className="timer-btn">
+                    Start
                   </button>
                 </div>
               </div>
@@ -89,6 +124,7 @@ const Timer = () => {
           )}
         </div>
       </div>
+
       <Modal
         className="modal-content"
         isOpen={isOpen}
@@ -100,7 +136,7 @@ const Timer = () => {
             &times;
           </span>
         </div>
-        <form className="modal-form" onSubmit={handleSubmit}>
+        <form className="modal-form" onSubmit={setTimer}>
           <label>
             Title:
             <input
@@ -158,7 +194,7 @@ const Timer = () => {
           <br />
           <div className="modal-footer">
             <button className="timer-btn" type="submit">
-              Start Timer
+              Set Timer
             </button>
           </div>
         </form>

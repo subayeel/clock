@@ -138,6 +138,21 @@ nav header ul li a:hover {
   text-align: center;
 }
 
+.btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.timer-btn{
+  background-color: #4CAF50;
+  cursor: pointer;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+}
+
 .modal-content {
   background-color: #fff;
   padding: 20px;
@@ -220,5 +235,5 @@ nav header ul li a:hover {
   padding: 10px 20px;
   margin: 0 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 4px;
 }
