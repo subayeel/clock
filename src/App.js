@@ -2,9 +2,8 @@ import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
 import Subayeel from "./Components/Subayeel";
 import Time from "./Components/Time";
 import Layout from "./Components/Layout"
-import Timer from "./Components/Time";
-import Stopwatch from "./Components/stopwatch"
-
+import Timer from "./Components/Timer";
+import Stopwatch from "./Components/stopwatch";
 
 function App() {
   return (

@@ -1,0 +1,58 @@
+[
+    {
+      "cityName": "New York",
+      "timezoneOffset": -570
+    },
+    {
+      "cityName": "Chicago, Illinois",
+      "timezoneOffset": -630
+    },
+    {
+      "cityName": "Denver, Colorado",
+      "timezoneOffset": -690
+    },
+    {
+      "cityName": "Los Angeles, California",
+      "timezoneOffset": -750
+    },
+    {
+      "cityName": "Phoenix, Arizona",
+      "timezoneOffset": -750
+    },
+    {
+      "cityName": "Anchorage, Alaska",
+      "timezoneOffset": -810
+    },
+    {
+      "cityName": "Honolulu, Hawaii",
+      "timezoneOffset": -930
+    },
+    {
+      "cityName": "London, United Kingdom",
+      "timezoneOffset": -270
+    },
+    {
+      "cityName": "Sydney, Australia",
+      "timezoneOffset": 270
+    },
+    {
+      "cityName": "Manila, Philippines",
+      "timezoneOffset": 150
+    },
+    {
+      "cityName": "Singapore, Singapore",
+      "timezoneOffset": 150
+    },
+    {
+      "cityName": "Tokyo, Japan",
+      "timezoneOffset": 210
+    },
+    {
+      "cityName": "Shanghai, China",
+      "timezoneOffset": 150
+    },
+    {
+      "cityName": "Berlin, Germany",
+      "timezoneOffset": -210
+    }
+  ]
