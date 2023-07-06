@@ -99,7 +99,7 @@ const Alarm = () => {
   return (
     <>
       <div>
-        {console.log(state, data)}
+        {/* {console.log(state, data)} */}
         <div className="modal_container">
           <div
             className="single_modal_card"
