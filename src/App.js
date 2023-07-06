@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
-import Subayeel from "./Components/Subayeel";
+
 import Alarm from "./Components/Alarm";
 import Time from "./Components/Time";
 import Layout from "./Components/Layout"
