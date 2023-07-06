@@ -1,14 +1,12 @@
 import { Routes, Route, BrowserRouter as Router, } from "react-router-dom";
-import Subayeel from "./Components/Subayeel";
+
 import Alarm from "./Components/Alarm";
 import Time from "./Components/Time";
 import Layout from "./Components/Layout"
 import Timer from "./Components/Timer";
 
+
 import Stopwatch from "./Components/stopwatch";
-import { useContext } from "react";
-import { ThemeContext } from "./Context/ThemeProvider";
-import Holidays from "./Components/Holidays";
 
 
 function App() {
