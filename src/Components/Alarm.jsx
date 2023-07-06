@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useLayoutEffect, useReducer, useState } from "react";
 import Clock from "./Clock";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -73,27 +73,29 @@ const reducer = (state, action) => {
 };
 
 const Alarm = () => {
+  const [loadAgain, setLoadAgain] = useState(false);
   const [data, setData] = useState(
-    JSON.parse(localStorage.getItem("item") || [])
+    JSON.parse(localStorage.getItem("item") || "[]")
   );
   const [modal, setModal] = useState(false);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [state, dispatch] = useReducer(reducer, initialState);
   const handleAlarm = () => {
-    data.push(state);
+    let time = `${state.Hour}:${state.Minute}:${state.Type}`;
+    console.log(time);
+    data.push(time);
     setData(data);
     localStorage.setItem("item", JSON.stringify(data));
   };
-
-  const addelem = () => {
-    let data = [{ Hour: 11, Minute: 15, Type: "am", Id: 0 }];
-    localStorage.setItem("item", JSON.stringify(data));
-  };
-  useEffect(() => {
-    addelem();
-  }, []);
+  useEffect(
+    () => {
+      console.log(loadAgain);
+    },
+    [data],
+    [loadAgain]
+  );
   return (
     <>
       {console.log(state, data)}
@@ -185,16 +187,15 @@ const Alarm = () => {
             {data && (
               <div className="right_container">
                 {data?.map((obj, i) => {
-                  if (i != 0)
-                    return (
-                      <Card
-                        key={i}
-                        id={i}
-                        data={data}
-                        setData={setData}
-                        {...obj}
-                      />
-                    );
+                  return (
+                    <Card
+                      key={i}
+                      time={obj}
+                      id={i}
+                      addata={setData}
+                      arr={data}
+                    />
+                  );
                 })}
               </div>
             )}
