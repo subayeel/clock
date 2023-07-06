@@ -6,7 +6,7 @@ function Subayeel() {
     localStorage.setItem("item", JSON.stringify(data));
   };
   useEffect(() => {
-    addelem();
+    // addelem();
   }, []);
   return (
     <div>

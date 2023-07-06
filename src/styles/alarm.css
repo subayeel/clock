@@ -125,3 +125,73 @@
     flex-direction: column;
     font-size: 20px;
 }
+.single_modal_card{
+    width: 400px;
+    height: 270px;
+    position: absolute;
+    background-color: white;
+    top: 30%;
+    left: 40%;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 30px;
+    transform: translate(0%,-0%);
+}
+.mod_btn_con{
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+.btn1{
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: gray;
+    border: none;
+    color: white;
+}
+.btn2{
+    height: 50px;
+    width: 120px;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(3, 94, 3);
+    border: none;
+}
+.radio-btn{
+    margin-right: 5px;
+}
+.spaninp{
+    font-size: small;
+    text-transform: capitalize;
+}
+.alarmpopup_connnn{
+    height: 180px;
+    width: 250px;
+    position: absolute;
+    left: 40%;
+    border-radius: 10px;
+    background-color: white;
+    display: flex !important;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.popup_title{
+    font-size: 30px;
+}
+.alarmpop_foot{
+}
+.stop_btn{
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    outline: none;
+    color: white;
+    background-color: red;
+}
+.alarmclosepop{
+    display: none;
+}
