@@ -60,7 +60,9 @@ const Clock = ({ show, AlarmData }) => {
     }
   }
   const handlePause = (val) => {
-    handleShow(false);
+    // handleShow();
+    setShow(false);
+    console.log("came here");
     if (val) {
       flag = false;
       setisActive(false);
@@ -83,26 +85,26 @@ const Clock = ({ show, AlarmData }) => {
   const formattedTime = date.toLocaleTimeString();
   return (
     <>
-      <Modal show={showw} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Close Alarm</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+      <div
+        className={`${showw ? "alarmpopup_connnn" : "alarmclosepop"} `}
+        // style={{ display: showw ? "block" : "none" }}
+      >
+        <div className="popup_title">Stop Alarm</div>
+        <div className="alarmpop_foot">
+          {/* <button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button
-            variant="primary"
+          </button> */}
+          <button
+            class="stop_btn"
             onClick={() => {
-              // handleClose(true);
+              handleClose();
               handlePause(true);
             }}
           >
             Stop
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          </button>
+        </div>
+      </div>
       <div className="alarm_con">
         <div className="alarm_time">{formattedTime}</div>
         <div className="alarm_day">{formattedDate}</div>

@@ -98,13 +98,13 @@ const Alarm = () => {
   );
   return (
     <>
-      {console.log(state, data)}
-      <div className="modal_container">
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+      <div>
+        {console.log(state, data)}
+        <div className="modal_container">
+          <div
+            className="single_modal_card"
+            style={{ display: show ? "block" : "none" }}
+          >
             <div className="action_container">
               <div className="Hour_container">
                 <div
@@ -137,45 +137,47 @@ const Alarm = () => {
                 </div>
               </div>
               <div className="type_container">
-                <span>
+                <span className="spaninp">
                   <input
+                    className="radio-btn"
                     type="radio"
                     id=""
                     name="test"
                     onClick={() => dispatch({ type: "setAM" })}
                     checked={state.Type === "am"}
                   />
-                  AM
+                  Am
                 </span>
-                <span>
+                <span className="spaninp">
                   {" "}
                   <input
+                    className="radio-btn"
                     type="radio"
                     id=""
                     name="test"
                     checked={state.Type === "pm"}
                     onClick={() => dispatch({ type: "setPM" })}
                   />
-                  PM
+                  Pm
                 </span>
               </div>
             </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button
-              variant="primary"
-              onClick={() => {
-                handleAlarm();
-                handleClose();
-              }}
-            >
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
+            <div className="mod_btn_con">
+              <button className="btn1" onClick={handleClose}>
+                Close
+              </button>
+              <button
+                className="btn2"
+                onClick={() => {
+                  handleAlarm();
+                  handleClose();
+                }}
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="alarm_container">
         <div className="left_container">
