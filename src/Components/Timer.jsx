@@ -6,6 +6,7 @@ import threeBeepSound from "../Assets/audio/threeSecBeep.mp3";
 import buzzerSound from "../Assets/audio/buzzer.mp3";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
 
 const Timer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -167,7 +168,7 @@ const Timer = () => {
       <div className="main-timer-container">
         {/* {submitted && <p className="timer-title">{title}</p>} */}
         <div className="progress-bar">
-          {(submitted) ? (
+          {submitted ? (
             <div className="progress-bar-container">
               {/* <p className="timer">{formatTime(totalSeconds)}</p> */}
               <CircularProgressbar
@@ -222,7 +223,12 @@ const Timer = () => {
             className="add-container"
           >
             <div className="add-btn">
-              <span>&#43;</span>
+              <span>
+                <i
+                  class="fa-sharp fa-solid fa-plus"
+                  style={{ color: "#ffffff" }}
+                ></i>
+              </span>
             </div>
           </div>
         </div>
@@ -232,12 +238,18 @@ const Timer = () => {
               <div className="btn-container">
                 <div>
                   <button onClick={resetTimer} className="timer-btn">
-                    Reset
+                    <i
+                      class="fa-sharp fa-solid fa-arrow-rotate-left fa-xl"
+                      style={{ color: "#ffffff" }}
+                    ></i>
                   </button>
                 </div>
                 <div>
                   <button onClick={handleSubmit} className="timer-btn">
-                    Start
+                    <i
+                      class="fa-sharp fa-regular fa-circle-play fa-xl"
+                      style={{ color: "#ffffff" }}
+                    ></i>
                   </button>
                 </div>
               </div>
@@ -249,18 +261,28 @@ const Timer = () => {
                   className="timer-btn"
                   onClick={() => handleOpenModal("settimer")}
                 >
-                  Set Timer
+                  <i
+                    class="fa-sharp fa-regular fa-timer fa-xl"
+                    style={{ color: "#ffffff" }}
+                  ></i>
                 </button>
               </div>
             </>
           )}
         </div>
+        
       </div>
 
       <Modal
         className="modal-content"
         isOpen={isOpen}
         onRequestClose={handleCloseModal}
+        overlayClassName={{
+          base: "modal-overlay",
+          afterOpen: "modal-overlay-open",
+          beforeClose: "modal-overlay-close",
+        }}
+        closeTimeoutMS={300}
       >
         <div className="modal-header">
           <h2>Set Timer</h2>
