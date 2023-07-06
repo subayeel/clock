@@ -50,7 +50,13 @@ const Clock = ({ show, AlarmData }) => {
     );
     type = type.toLowerCase();
     if (
-      checkElem((check.getHours() % 12) + ":" + check.getMinutes() + ":" + type)
+      checkElem(
+        (check.getHours() % 12 == 0 ? 12 : check.getHours() % 12) +
+          ":" +
+          check.getMinutes() +
+          ":" +
+          type
+      )
     ) {
       console.log("Camh éere");
       if (flag) {
@@ -75,10 +81,7 @@ const Clock = ({ show, AlarmData }) => {
   const checkElem = (time) => {
     console.log(time, "Chek elem");
     for (let i = 0; i < AlarmData.length; i++) {
-      console.log(
-        AlarmData[i] == time,
-        AlarmData[AlarmData.length - 1 - i] == time
-      );
+      console.log(AlarmData[i] == time, AlarmData[i], time);
       if (AlarmData[i] == time || AlarmData[AlarmData.length - 1 - i] == time) {
         return true;
       }

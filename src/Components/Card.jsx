@@ -21,12 +21,17 @@ function Card({ time, id, addata, arr }) {
   return (
     <div className="alarm-card_container">
       <div className="single_card_container">
-        <div className="card_hour">{time}</div>
+        <div className="card_hour">
+          {time.split(":")[0] +
+            ":" +
+            time.split(":")[1] +
+            " " +
+            time.split(":")[2]}
+        </div>
         <div className="del-btn-con">
           <button className="del-btn" onClick={() => handleDelete(id)}>
-            Remove{" "}
             <DeleteForeverIcon
-              sx={{ backgroundColor: "rgb(251, 72, 72)", marginTop: "-3px" }}
+              sx={{ backgroundColor: "rgb(251, 72, 72)", height: "20px" }}
             />
           </button>
         </div>
