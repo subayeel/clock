@@ -4,7 +4,8 @@ import Alarm from "./Components/Alarm";
 import Time from "./Components/Time";
 import Layout from "./Components/Layout"
 import Timer from "./Components/Timer";
-import Stopwatch from "./Components/stopwatch"
+
+import Stopwatch from "./Components/stopwatch";
 
 
 function App() {
@@ -17,7 +18,6 @@ function App() {
 
           <Route path="/" element={<Layout />}>
             <Route path="/Stopwatch" element={<Stopwatch />}></Route>
-
             <Route path="/timer" element={<Timer />}></Route>
             <Route path="/alarm" element={<Alarm />}></Route>
             <Route path="/time" element={<Time />}></Route>
