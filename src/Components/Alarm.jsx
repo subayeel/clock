@@ -50,7 +50,7 @@ const reducer = (state, action) => {
     if (state.Minute <= 1) {
       newState = {
         ...state,
-        Minute: 60,
+        Minute: 0,
       };
     } else {
       newState = {
@@ -179,28 +179,31 @@ const Alarm = () => {
           </div>
         </div>
       </div>
-      <div className="alarm_container">
-        <div className="left_container">
-          <Clock show={handleShow} AlarmData={data} />
-        </div>
-        <div className="right_containerr">
-          <div className="alarm_card_containerr">
-            <h1 className="heading_myalarm">My Alarm</h1>
-            {data && (
-              <div className="right_container">
-                {data?.map((obj, i) => {
-                  return (
-                    <Card
-                      key={i}
-                      time={obj}
-                      id={i}
-                      addata={setData}
-                      arr={data}
-                    />
-                  );
-                })}
-              </div>
-            )}
+      {/* add */}
+      <div className="left_right_clock">
+        <div className="alarm_container">
+          <div className="left_container">
+            <Clock show={handleShow} AlarmData={data} />
+          </div>
+          <div className="right_containerr">
+            <div className="alarm_card_containerr">
+              <h1 className="heading_myalarm">Existing Alarm</h1>
+              {data && (
+                <div className="right_container">
+                  {data?.map((obj, i) => {
+                    return (
+                      <Card
+                        key={i}
+                        time={obj}
+                        id={i}
+                        addata={setData}
+                        arr={data}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
