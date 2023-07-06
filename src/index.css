@@ -3,22 +3,22 @@
   --lightGrey: #435b66;
   --maroon: #a76f6f;
   --salmon: #eab2a0;
+  --pseudo-beforeText: "HIIII";
 }
 
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #eee;
+  height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
 nav {
   display: flex;
@@ -32,15 +32,17 @@ nav header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1140px;
+  /* max-width: 1140px; */
   margin: auto;
-  /* padding: 1rem 0; */
+  padding: 1rem 2rem;
 }
 
 nav header ul {
   display: flex;
   align-items: center;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 nav header ul li {
   margin: 8px;
@@ -48,8 +50,8 @@ nav header ul li {
 nav header ul li a {
   text-decoration: none;
   color: white;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   /* text-transform: uppercase; */
 }
 nav header ul li a:hover {
@@ -65,5 +67,41 @@ nav header ul li a:hover {
 .logo p {
   font-size: 32px;
   font-weight: 600;
+  margin: 0;
+  color: #eee;
+}
+
+aside {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+ 
+  background-color: var(--darkBlue);
+}
+aside ul {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+aside ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* height: 80px;
+  width: 80px; */
+  padding: 1rem;
+  border-bottom: 1px solid var(--salmon);
+}
+
+aside ul li:hover {
+  cursor: pointer;
+  background-color: rgb(78, 78, 78);
+} 
+aside ul li p {
+  margin: 0;
   color: var(--salmon);
+  font-size: 14px;
 }

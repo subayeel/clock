@@ -1,0 +1,269 @@
+.alarm_container{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* background-color: #eee; */
+    height: calc(100vh - 40px);
+    
+}
+.left_container,.right_containerr ,.alarm_con{
+    /* width: 50%; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.right_containerr {
+    margin-top: -30px;
+    height: fit-content;
+}
+.alarm_con{
+    gap: 10px;
+    color: #2d4356;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.alarm_time{
+
+    width: 100%;
+    font-size: 60px; 
+    text-transform: uppercase;  
+}
+.alarm_day{
+    margin-bottom: 0% !important;
+    font-size: 30px;
+    width: 250px;
+}
+.alarm_set_btn{
+    height: 40px;
+    color: #a76f6f;
+    width: 120px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border: solid #a76f6f 1px;
+    border-radius: 5px;
+}
+.alarm_set_btn:hover{
+    transition: .3s ease-in-out;
+    color: white;
+    background-color: #a76f6f;
+}
+.right_containerr{
+    /* background-color: white; */
+}
+.heading_myalarm{
+    font-size: 30px;
+    color: #2d4356;
+    text-align: start;
+    width: 400px;
+    padding-inline: auto;
+    /* border: solid blue; */
+    padding-left: 40px;
+    margin-bottom: 0%;
+}
+.alarm_card_containerr{
+    height: 200px;
+    width: 400px;
+    /* overflow-y: scroll; */
+    pad: 10px;
+}
+.right_container{
+    height: 200px;
+    /* border: solid red; */
+    overflow: scroll;
+}
+.alarm_card_containerr::-webkit-scrollbar{
+    background-color: transparent;
+    width: 0px;
+    display: none;
+}
+.alarm-card_container{
+    /* background-color: blue; */
+    height: 50px;
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.single_card_container{
+    box-sizing: border-box;
+    background-color: #2d4356 !important;
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+}
+.single_card_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 20px;
+}
+.card_hour{
+    background-color: #2d4356 !important;
+    color: white;
+    /* background-color: lightgray !important; */
+}
+.del-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px !important;
+    width: 100px !important;
+}
+.del-btn-con{
+    background-color: transparent;
+}
+.del-btn{
+    border: none;
+    height: 30px !important;
+    width: 30px !important;
+    background-color: rgb(251, 72, 72);
+}
+.action_container{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+.Hour_container,.minute_container{
+    border: solid gray 1px;
+    width: 50px !important;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.up_arrow,.down_arrow{
+    height: 25%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.up_arrow{
+    border-bottom: solid gray 1px;
+}
+.down_arrow{
+    border-top: solid gray 1px;
+}
+.display_hour{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.type_container{
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    font-size: 20px;
+}
+.single_modal_card{
+    width: 400px;
+    height: 270px;
+    position: absolute;
+    background-color: white;
+    top: 30%;
+    left: 40%;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transform: translate(0%,-0%);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.mod_btn_con{
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+.btn1{
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: gray;
+    border: none;
+    color: red;
+}
+.btn2{
+    height: 50px;
+    width: 120px;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(3, 94, 3);
+    border: none;
+}
+.radio-btn{
+    margin-right: 5px;
+}
+.spaninp{
+    font-size: small;
+    text-transform: capitalize;
+}
+.alarmpopup_connnn{
+    height: 180px;
+    width: 250px;
+    position: absolute;
+    left: 40%;
+    border-radius: 10px;
+    background-color: white;
+    display: flex !important;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.popup_title{
+    font-size: 30px;
+}
+.alarmpop_foot{
+}
+.stop_btn{
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    outline: none;
+    color: white;
+    background-color: red;
+}
+.alarmclosepop{
+    display: none;
+}
+.left_right_clock{
+  width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    /* flex-direction: column; */
+}
+.alarm_container{
+    width: 50%;
+    /* border: solid green; */
+    flex-direction: column;
+    /* justify-content: center ; */
+    align-items: center !important;
+}
+.left_container{
+    height: 300px;
+    width: 100% !important;
+}
+.right_container{
+    padding-top: 5px;
+    height: 300px;
+    padding-bottom: 20px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.right_container::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-color: transparent transparent;
+}
