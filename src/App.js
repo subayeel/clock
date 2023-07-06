@@ -4,9 +4,12 @@ import Alarm from "./Components/Alarm";
 import Time from "./Components/Time";
 import Layout from "./Components/Layout"
 import Timer from "./Components/Timer";
+import Holidays from "./Components/Holidays";
 
 
 import Stopwatch from "./Components/stopwatch";
+import { useContext } from "react";
+import { ThemeContext } from "./Context/ThemeProvider";
 
 
 function App() {

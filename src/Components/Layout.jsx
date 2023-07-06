@@ -113,6 +113,8 @@ function Layout() {
           height: "calc(100vh - 80px) ",
           overflow: "auto",
           marginLeft: "107px",
+          display: "flex",
+          width: "calc(100vw - 6.7rem)",
         }}
       >
         <Outlet />
