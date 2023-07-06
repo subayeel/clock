@@ -13,9 +13,9 @@ import { ThemeContext } from "./Context/ThemeProvider";
 
 
 function App() {
-  const {dark} = useContext(ThemeContext)
+  const { dark } = useContext(ThemeContext)
   return (
-    <div style={dark ?{background:"#bbb"}:{background:"#eee"}} className="App">
+    <div style={dark ? { background: "#bbb" } : { background: "#eee" }} className="App">
       <Router>
         <Routes>
 
