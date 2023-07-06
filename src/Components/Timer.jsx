@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import "../styles/Timer.css";
 import Modal from "react-modal";
 import tenBeepSound from "../Assets/audio/tenSecBeep.mp3";
@@ -9,10 +9,11 @@ import "react-circular-progressbar/dist/styles.css";
 
 const Timer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [modalContext, setModalContext] = useState(null);
   const [hours, setHours] = useState("00");
   const [minutes, setMinutes] = useState("00");
   const [seconds, setSeconds] = useState("00");
-  const [title, setTitle] = useState("");
+  // const [title, setTitle] = useState("");
   const [timerActive, setTimerActive] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [totalSeconds, setTotalSeconds] = useState("");
@@ -22,14 +23,50 @@ const Timer = () => {
   const threeBeep = new Audio(threeBeepSound);
   const buzzer = new Audio(buzzerSound);
   const progressRef = useRef(100);
+  const [presetTimers, setPresetTimers] = useState([
+    {
+      id: 1,
+      presetHours: "0",
+      presetMinutes: "10",
+      presetSeconds: "0",
+      totalSeconds: "600",
+    },
+    {
+      id: 2,
+      presetHours: "0",
+      presetMinutes: "20",
+      presetSeconds: "0",
+      totalSeconds: "1200",
+    },
+    {
+      id: 3,
+      presetHours: "0",
+      presetMinutes: "30",
+      presetSeconds: "0",
+      totalSeconds: "1800",
+    },
+  ]);
   //   let currentTimer = "00:00:00";
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback((context) => {
+    setModalContext(context);
     setIsOpen(true);
-  };
+  }, []);
 
   const handleCloseModal = () => {
+    setModalContext(null);
     setIsOpen(false);
+  };
+
+  const addPresetTimers = (hours, minutes, seconds, totalSeconds) => {
+    const newPresetTimer = {
+      id: presetTimers.length + 1,
+      presetHours: hours,
+      presetMinutes: minutes,
+      presetSeconds: seconds,
+      totalSeconds: totalSeconds,
+    };
+    setPresetTimers((prevTimers) => [...prevTimers, newPresetTimer]);
   };
 
   const resetTimer = (event) => {
@@ -42,11 +79,21 @@ const Timer = () => {
 
   const handleTimer = (event) => {
     event.preventDefault();
+    const settingSeconds = handleTotalSeconds(hours, minutes, seconds);
+    if (modalContext === "settimer") {
+      setSubmitted(true);
+      handleCloseModal();
+    } else if (modalContext === "setpreset") {
+      addPresetTimers(hours, minutes, seconds, settingSeconds);
+    }
+    handleCloseModal();
+  };
+
+  const handleTotalSeconds = (hours, minutes, seconds) => {
     setTotalSeconds(
       parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds)
     );
-    setSubmitted(true);
-    handleCloseModal();
+    return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
   };
 
   const handleSubmit = (event) => {
@@ -72,6 +119,7 @@ const Timer = () => {
         if (newTime <= 0) {
           clearInterval(interval);
           setTimerActive(false);
+          setSelectedOption("");
           tenBeep.pause();
           tenBeep.currentTime = 0;
           buzzer.play();
@@ -101,16 +149,15 @@ const Timer = () => {
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  const handleOptionChange = (event) => {
-    const selectedValue = event.target.value;
+  const handleOptionChange = (presetTimer) => {
+    const selectedValue = presetTimer.id;
     if (selectedOption === selectedValue) {
       setSelectedOption("");
       setTotalSeconds(0);
       setSubmitted(false);
-      console.log("entered");
     } else {
       setSelectedOption(selectedValue);
-      setTotalSeconds(parseInt(selectedValue) * 60);
+      setTotalSeconds(parseInt(presetTimer.totalSeconds));
       setSubmitted(true);
     }
   };
@@ -118,69 +165,68 @@ const Timer = () => {
   return (
     <>
       <div className="main-timer-container">
-        {submitted && <p className="timer-title">{title}</p>}
-        {submitted ? (
-          <div className="progress-bar-container">
-            {/* <p className="timer">{formatTime(totalSeconds)}</p> */}
-            <CircularProgressbar
-              value={progressRef.current}
-              text={formatTime(totalSeconds)}
-              strokeWidth={2}
-              styles={{
-                path: {
-                  stroke: (totalSeconds <= 3) ? "red" : "var(--darkBlue)",
-                },
-              }}
-            />
-          </div>
-        ) : (
-          <div className="progress-bar-container">
-            {/* <p className="timer">{`00:00:00`}</p> */}
-            <CircularProgressbar
-              value={totalSeconds}
-              text={`00:00:00`}
-              strokeWidth={2}
-            />
-          </div>
-        )}
+        {/* {submitted && <p className="timer-title">{title}</p>} */}
+        <div className="progress-bar">
+          {(submitted) ? (
+            <div className="progress-bar-container">
+              {/* <p className="timer">{formatTime(totalSeconds)}</p> */}
+              <CircularProgressbar
+                value={progressRef.current}
+                text={formatTime(totalSeconds)}
+                strokeWidth={2}
+                styles={{
+                  path: {
+                    stroke: totalSeconds <= 3 ? "red" : "var(--darkBlue)",
+                  },
+                }}
+              />
+            </div>
+          ) : (
+            <div className="progress-bar-container">
+              {/* <p className="timer">{`00:00:00`}</p> */}
+              <CircularProgressbar
+                value={0}
+                text={`00:00:00`}
+                strokeWidth={2}
+              />
+            </div>
+          )}
+        </div>
         <div className="preset">
-          {/* <div onClick={(event) => handlePresetTimer(event)} value='00:10:00' className={`preset-ten ${timerActive ? 'active' : ''}`}>00:10:00</div>
-          <div className={`preset-twenty ${timerActive ? 'active' : ''}`}>00:20:00</div> */}
-
-          <div>
-            <input
-              type="checkbox"
-              id="preset-ten"
-              value="10"
-              checked={selectedOption === "10"}
-              onChange={handleOptionChange}
-              hidden
-            />
-            <label
-              className={`${selectedOption === "10" ? "active" : ""}`}
-              htmlFor="preset-ten"
-            >
-              00:10:00
-            </label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="preset-twenty"
-              value="20"
-              checked={selectedOption === "20"}
-              onChange={handleOptionChange}
-              hidden
-            />
-            <label
-              className={`${selectedOption === "20" ? "active" : ""}`}
-              htmlFor="preset-twenty"
-            >
-              00:20:00
-            </label>
+          {presetTimers.map((presetTimer) => (
+            <>
+              <label
+                htmlFor={`preset-${presetTimer.id}`}
+                className={`preset-label ${
+                  selectedOption === presetTimer.id && submitted ? "active" : ""
+                }`}
+                key={presetTimer.id}
+              >
+                <input
+                  type="checkbox"
+                  id={`preset-${presetTimer.id}`}
+                  value={presetTimer.totalSeconds}
+                  checked={selectedOption === presetTimer.id}
+                  onChange={() => handleOptionChange(presetTimer)}
+                  hidden
+                />
+                {/* <label htmlFor={`preset-${presetTimer.id}`}>
+                  {formatTime(presetTimer.totalSeconds)}
+                </label> */}
+                {formatTime(presetTimer.totalSeconds)}
+              </label>
+            </>
+          ))}
+          <div
+            onClick={() => handleOpenModal("setpreset")}
+            className="add-container"
+          >
+            <div className="add-btn">
+              <span>&#43;</span>
+            </div>
           </div>
         </div>
-        <div>
+        <div className="timer-buttons">
           {submitted ? (
             <>
               <div className="btn-container">
@@ -199,7 +245,10 @@ const Timer = () => {
           ) : (
             <>
               <div className="btn-container">
-                <button className="timer-btn" onClick={handleOpenModal}>
+                <button
+                  className="timer-btn"
+                  onClick={() => handleOpenModal("settimer")}
+                >
                   Set Timer
                 </button>
               </div>
@@ -220,7 +269,7 @@ const Timer = () => {
           </span>
         </div>
         <form className="modal-form" onSubmit={handleTimer}>
-          <label>
+          {/* <label>
             Title: <br />
             <input
               type="text"
@@ -229,7 +278,7 @@ const Timer = () => {
               onChange={(event) => setTitle(event.target.value)}
             />
           </label>
-          <br />
+          <br /> */}
           <div className="time-input">
             <label>
               Hours:
