@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../index.css'
 
+
 const getTimeByTimezoneOffset = (timezoneOffset) => {
   const currentTime = new Date();
   const offsetMilliseconds = timezoneOffset * 60 * 1000;
@@ -24,9 +25,18 @@ const CityTime = ({ cityName, timezoneOffset }) => {
   return (
     <>
         <div class="cardContainer">
-          <div className='cityName'>{cityName}</div>
+          <div className='cityName'>
+            <div>{cityName}</div>
+            <div><i
+                className="fa-regular fa-heart"
+                style={{ color: 'red', cursor: 'pointer' }}
+                onClick={(event) => {
+                event.target.classList.toggle('fa-solid');
+                event.target.classList.toggle('fa-regular');}}></i>
+            </div>
+          </div>
              <div class="cityTime">
-             <div>{cityTime}</div>
+              <div>{cityTime}</div>
            </div>
         </div>
 
