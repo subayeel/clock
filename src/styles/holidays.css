@@ -1,13 +1,14 @@
 .holidays-container {
   width: 100%;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   color: white;
+  
 }
 .holiday-card {
   background-color: var(--darkBlue);
-  margin: auto;
+  margin: 1rem auto;
   width: max-content;
   padding: 1rem;
   margin: 2rem;
@@ -16,6 +17,7 @@
   color: #eee;
   font-size: 18px;
   font-weight: 500;
+  margin: 1rem;
 }
 
 .holidays-container table tr td {
