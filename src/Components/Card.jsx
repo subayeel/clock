@@ -28,7 +28,7 @@ function Card({ time, id, addata, arr }) {
             " " +
             time.split(":")[2]}
         </div>
-        <div className="del-btn-con">
+        <div className="del-btn-conn">
           <button className="del-btn" onClick={() => handleDelete(id)}>
             <DeleteForeverIcon
               sx={{ backgroundColor: "rgb(251, 72, 72)", height: "20px" }}

@@ -83,7 +83,9 @@ const Alarm = () => {
   const handleShow = () => setShow(true);
   const [state, dispatch] = useReducer(reducer, initialState);
   const handleAlarm = () => {
-    let time = `${state.Hour}:${state.Minute}:${state.Type}`;
+    let time = `${state.Hour}:${
+      state.Minute < 10 ? "0" + state.Minute : state.Minute
+    }:${state.Type}`;
     console.log(time);
     data.push(time);
     setData(data);
