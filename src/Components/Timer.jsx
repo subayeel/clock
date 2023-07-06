@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../styles/Timer.css";
 import Modal from "react-modal";
 import tenBeepSound from "../Assets/audio/tenSecBeep.mp3";
@@ -21,6 +21,7 @@ const Timer = () => {
   const tenBeep = new Audio(tenBeepSound);
   const threeBeep = new Audio(threeBeepSound);
   const buzzer = new Audio(buzzerSound);
+  const progressRef = useRef(100);
   //   let currentTimer = "00:00:00";
 
   const handleOpenModal = () => {
@@ -34,7 +35,7 @@ const Timer = () => {
   const resetTimer = (event) => {
     event.preventDefault();
     clearInterval(timerInterval);
-    setTotalSeconds(0)
+    setTotalSeconds(0);
     setSelectedOption("");
     setSubmitted(false);
   };
@@ -63,6 +64,10 @@ const Timer = () => {
       setTotalSeconds((prevTime) => {
         const newTime = prevTime - 1;
 
+        // Calculate progress value
+        const progressValue = (newTime / totalSeconds) * 100;
+        progressRef.current = progressValue;
+
         // Play beep sound when the timer is near 10 seconds
         if (newTime <= 0) {
           clearInterval(interval);
@@ -71,6 +76,7 @@ const Timer = () => {
           tenBeep.currentTime = 0;
           buzzer.play();
           setSubmitted(false);
+          progressRef.current = 100;
           return 0;
           // setSubmitted(false);
         } else if (newTime > 0 && newTime <= 3) {
@@ -78,7 +84,7 @@ const Timer = () => {
         } else if (newTime > 3 && newTime <= 10) {
           tenBeep.play();
         }
-        console.log(newTime); // Threshold value below which the progress bar appears filled
+        console.log(totalSeconds); // Threshold value below which the progress bar appears filled
         return newTime >= 0 ? newTime : 0;
       });
     }, 1000);
@@ -117,9 +123,14 @@ const Timer = () => {
           <div className="progress-bar-container">
             {/* <p className="timer">{formatTime(totalSeconds)}</p> */}
             <CircularProgressbar
-              value={totalSeconds}
+              value={progressRef.current}
               text={formatTime(totalSeconds)}
               strokeWidth={2}
+              styles={{
+                path: {
+                  stroke: (totalSeconds <= 3) ? "red" : "var(--darkBlue)",
+                },
+              }}
             />
           </div>
         ) : (
