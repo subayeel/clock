@@ -7,7 +7,7 @@
 
 body {
   margin: 0;
-  padding:0;
+  padding: 0;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -16,7 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #eee;
 }
-.single_card_container{
+.single_card_container {
   height: 50px;
   width: 300px;
 
@@ -26,27 +26,27 @@ body {
   justify-content: space-around;
   align-items: center;
 }
-.heading_myalarm{
+.heading_myalarm {
   font-size: 30px;
   /* margin-bottom: 0%; */
   color: orange;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-.card_hour{
+.card_hour {
   background-color: white;
   text-transform: uppercase;
   font-size: 20px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-.del-btn{
+.del-btn {
   background-color: red;
   border-radius: 8px;
   outline: none;
   color: white;
-  
+
   width: 100px;
 }
-.del-btn-con{
+.del-btn-con {
   background-color: white;
 }
 
@@ -62,15 +62,17 @@ nav header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1140px;
+  /* max-width: 1140px; */
   margin: auto;
-  /* padding: 1rem 0; */
+  padding: 1rem 2rem;
 }
 
 nav header ul {
   display: flex;
   align-items: center;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 nav header ul li {
   margin: 8px;
@@ -78,8 +80,8 @@ nav header ul li {
 nav header ul li a {
   text-decoration: none;
   color: white;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   /* text-transform: uppercase; */
 }
 nav header ul li a:hover {
@@ -95,5 +97,40 @@ nav header ul li a:hover {
 .logo p {
   font-size: 32px;
   font-weight: 600;
+  margin: 0;
   color: var(--salmon);
+}
+
+aside {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  background-color: var(--darkBlue);
+}
+aside ul {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+aside ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* height: 80px;
+  width: 80px; */
+  padding: 1rem;
+  border-bottom: 1px solid var(--salmon);
+}
+
+aside ul li:hover {
+  cursor: pointer;
+  background-color: rgb(78, 78, 78);
+} 
+aside ul li p {
+  margin: 0;
+  color: var(--salmon);
+  font-size: 14px;
 }
