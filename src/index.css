@@ -15,6 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #eee;
+  height: 100vh;
 }
 .single_card_container {
   height: 50px;
@@ -98,13 +99,14 @@ nav header ul li a:hover {
   font-size: 32px;
   font-weight: 600;
   margin: 0;
-  color: var(--salmon);
+  color: #eee;
 }
 
 aside {
   position: fixed;
   height: 100vh;
   left: 0;
+ 
   background-color: var(--darkBlue);
 }
 aside ul {

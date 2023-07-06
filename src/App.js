@@ -6,11 +6,15 @@ import Layout from "./Components/Layout"
 import Timer from "./Components/Timer";
 
 import Stopwatch from "./Components/stopwatch";
+import { useContext } from "react";
+import { ThemeContext } from "./Context/ThemeProvider";
+import Holidays from "./Components/Holidays";
 
 
 function App() {
+  const {dark} = useContext(ThemeContext)
   return (
-    <div className="App">
+    <div style={dark ?{background:"#bbb"}:{background:"#eee"}} className="App">
       <Router>
         <Routes>
 
@@ -21,6 +25,7 @@ function App() {
             <Route path="/timer" element={<Timer />}></Route>
             <Route path="/alarm" element={<Alarm />}></Route>
             <Route path="/time" element={<Time />}></Route>
+            <Route path="/holidays" element={<Holidays />}></Route>
           </Route>
         </Routes>
       </Router>
