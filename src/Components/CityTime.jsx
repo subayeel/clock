@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../index.css';
+import { getTimeByTimezoneOffset } from '../data/timeCalculate';
 
-const getTimeByTimezoneOffset = (timezoneOffset) => {
-  const currentTime = new Date();
-  const offsetMilliseconds = timezoneOffset * 60 * 1000;
-  const cityTime = new Date(currentTime.getTime() + offsetMilliseconds);
-  return cityTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-};
+// const getTimeByTimezoneOffset = (timezoneOffset) => {
+//   const currentTime = new Date();
+//   const offsetMilliseconds = timezoneOffset * 60 * 1000;
+//   const cityTime = new Date(currentTime.getTime() + offsetMilliseconds);
+//   return cityTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+// };
 
 const CityTime = ({ cityName, timezoneOffset }) => {
   const [cityTime, setCityTime] = useState('');
@@ -26,10 +27,11 @@ const CityTime = ({ cityName, timezoneOffset }) => {
     setIsFavorite(!isFavorite);
   };
 
+
   
   return (
     <>
-      <div className="cardContainer">
+      <div className="cardContainer" /*onClick={() => handleTime()}*/>
         <div className="cityName">
           <div>{cityName}</div>
           <div>
