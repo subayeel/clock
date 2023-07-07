@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useContext } from "react";
-import "../styles/Timer.css";
+import "../styles/timer.css";
 import Modal from "react-modal";
 import tenBeepSound from "../Assets/audio/tenSecBeep.mp3";
 import threeBeepSound from "../Assets/audio/threeSecBeep.mp3";
