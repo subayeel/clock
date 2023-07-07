@@ -133,14 +133,34 @@ aside ul li p {
     border-bottom: none;
     flex: 1;
   }
-  aside ul li p{
+  aside ul li p {
     display: none;
   }
 
-  .outlet-container{
+  .outlet-container {
     margin-left: 0px;
     width: 100vw;
   }
 }
 
-
+.nf-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  height: 100vh;
+}
+.nf-container p {
+  /* color: #435b66; */
+  margin: 1rem 0 2rem 0;
+  font-size: 16px;
+  
+}
+.nf-container button {
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  background-color: #2d4356;
+  color: #eee;
+  margin: 1rem;
+}

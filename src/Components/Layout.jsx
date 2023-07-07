@@ -1,9 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import clock from "../Assets/Images/clock.png";
 import { Alarm, AvTimer, DarkMode, Language, Timer } from "@mui/icons-material";
 import styled from "styled-components";
 import { ThemeContext } from "../Context/ThemeProvider";
+
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import { BiFullscreen } from "react-icons/bi";
 
 const StyledAlarm = styled(Alarm)`
   color: #eab2a0;
@@ -34,15 +37,40 @@ const StyledDarkMode = styled(DarkMode)`
     cursor: pointer;
   }
 `;
+const StyledFullScreen = styled(BiFullscreen)`
+  color: white;
+  height: 28px;
+  width: 28px;
+  &:hover {
+    color: grey;
+    cursor: pointer;
+  }
+`;
 function Layout() {
   const location = useLocation();
   const navigate = useNavigate();
+  const handle = useFullScreenHandle();
+  const cardRef = useRef(null);
   const { setDark, dark } = useContext(ThemeContext);
 
   console.log(location.pathname);
   const toggleTheme = () => {
     localStorage.setItem("dark", !dark);
     setDark(!dark);
+  };
+
+  const openFullscreen = () => {
+    const cardElement = cardRef.current;
+
+    if (cardElement.requestFullscreen) {
+      cardElement.requestFullscreen();
+    } else if (cardElement.webkitRequestFullscreen) {
+      /* Safari */
+      cardElement.webkitRequestFullscreen();
+    } else if (cardElement.msRequestFullscreen) {
+      /* IE11 */
+      cardElement.msRequestFullscreen();
+    }
   };
   return (
     <>
@@ -60,6 +88,9 @@ function Layout() {
             </li>
             <li>
               <StyledDarkMode onClick={toggleTheme} />
+            </li>
+            <li>
+              <StyledFullScreen onClick={openFullscreen} />
             </li>
           </ul>
         </header>
@@ -106,10 +137,21 @@ function Layout() {
             <StyledWorldClock />
             <p>World Clock</p>
           </li>
+          <li
+            style={
+              location.pathname.split("/").includes("todo")
+                ? { background: "grey" }
+                : {}
+            }
+            onClick={() => navigate("/todo")}
+          >
+            <StyledWorldClock />
+            <p>To Do</p>
+          </li>
         </ul>
       </aside>
 
-      <div className="outlet-container">
+      <div ref={cardRef} className="outlet-container">
         <Outlet />
       </div>
     </>

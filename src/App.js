@@ -9,15 +9,18 @@ import Stopwatch from "./Components/stopwatch";
 import { useContext } from "react";
 import { ThemeContext } from "./Context/ThemeProvider";
 import TodoEmail from "./Components/TodoEmail";
+import NotFound from "./Components/NotFound";
 
 function App() {
   const { dark } = useContext(ThemeContext);
   return (
-    <div style={dark ? { background: "#bbb" } : { background: "#eee" }} className="App">
+    <div
+      style={dark ? { background: "#bbb" } : { background: "#eee" }}
+      className="App"
+    >
       <Router>
         <Routes>
           {/* Add your Components here */}
-
           <Route path="/" element={<Layout />}>
             <Route path="/Stopwatch" element={<Stopwatch />}></Route>
             <Route path="/timer" element={<Timer />}></Route>
@@ -26,6 +29,8 @@ function App() {
             <Route path="/holidays" element={<Holidays />}></Route>
             <Route path="/todo" element={<TodoEmail />}></Route>
           </Route>
+          <Route path="*" element={<NotFound />}></Route>
+
         </Routes>
       </Router>
     </div>
