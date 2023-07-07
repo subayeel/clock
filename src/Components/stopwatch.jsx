@@ -1,16 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { VscDebugStart } from "react-icons/vsc";
 import { BsStop } from "react-icons/bs";
 import { LuTimerReset } from "react-icons/lu";
 import { PiFlagPennant } from "react-icons/pi";
 import { MdDeleteOutline } from "react-icons/md";
 import { BsGear } from 'react-icons/bs';
-
 import "../styles/stopwatchstyle.css";
-
-import ClockAnimation from "../Animation/ClockAnimation";
+import {ThemeContext} from "../Context/ThemeProvider"
 
 function Stopwatch() {
+  const {dark} = useContext(ThemeContext)
   const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
   const [laps, setLaps] = useState([]);
@@ -85,20 +84,20 @@ function Stopwatch() {
         <div className="button-wrapper">
           {isStoped && (
             <>
-              <button className="btn reset" onClick={reset}>
+              <button className={dark? "btn reset":"lightbtn reset"} onClick={reset}>
                 <LuTimerReset size="25px" color="white" />
               </button>
-              <button className="btn start" onClick={start}>
+              <button className={dark? "btn start":"lightbtn start"} onClick={start}>
                 <VscDebugStart size="25px" color="white" />
               </button>
             </>
           )}
           {isStarted && (
             <>
-              <button className="btn lap" onClick={recordLap}>
+              <button className={dark? "btn lap":"lightbtn lap"} onClick={recordLap}>
                 <PiFlagPennant size="25px" color="white" />
               </button>
-              <button className="btn stop" onClick={stop}>
+              <button className={dark? "btn stop":"lightbtn stop"} onClick={stop}>
                 <BsStop size="25px" color="white" />
               </button>
             </>
@@ -134,12 +133,11 @@ function Stopwatch() {
           </>
         )}
       </div>
-      <div className='gears'>
+      <div className={dark? "gears":"lightgears"}>
         <BsGear id={isAnimation ? 'spin' : ''}  size='350px' className='gear1'/>
         <BsGear id={isAnimation ? 'spin-back' : ''} size='250px' className='gear2'/>
         <BsGear id={isAnimation ? 'spin' : ''} size='150px' className='gear3'/>
-        <BsGear id={isAnimation ? 'spin' : ''} size='250px' className='gear4'/>
-        <BsGear id={isAnimation ? 'spin-back' : ''} size='220px' className='gear5'/>
+        <BsGear id={isAnimation ? 'spin-back' : ''} size='220px' className='gear4'/>
       </div>
     </div>
   );
