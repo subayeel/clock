@@ -22,11 +22,10 @@ function Card({ time, id, addata, arr }) {
     <div className="alarm-card_container">
       <div className="single_card_container">
         <div className="card_hour">
-          {time.split(":")[0] +
-            ":" +
-            time.split(":")[1] +
-            " " +
-            time.split(":")[2]}
+          {
+            time.split(":")[0] + ":" + time.split(":")[1] + " "
+            // time.split(":")[2]}
+          }
         </div>
         <div className="del-btn-conn">
           <button className="del-btn" onClick={() => handleDelete(id)}>

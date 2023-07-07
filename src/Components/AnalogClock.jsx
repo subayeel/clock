@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const AnalogClock = () => {
+const AnalogClock = ({ vibrateval }) => {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -24,7 +24,10 @@ const AnalogClock = () => {
 
   return (
     <div className="clock">
-      <div className="hour" style={{ transform: getRotation(hh + mm / 60, 12) }}></div>
+      <div
+        className="hour"
+        style={{ transform: getRotation(hh + mm / 60, 12) }}
+      ></div>
       <div className="min" style={{ transform: getRotation(mm, 60) }}></div>
       <div className="sec" style={{ transform: getRotation(ss, 60) }}></div>
     </div>
