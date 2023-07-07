@@ -106,9 +106,9 @@ const Time = () => {
   return (
     <>
       <div className="main">
-        { <div className="centerContainer">
+        <div className="centerContainer">
           <Analog/>
-        </div> }
+        </div>
         <div className="search">
           <form className="search-bar">
             <input
