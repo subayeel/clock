@@ -108,3 +108,14 @@ aside ul li p {
   color: var(--salmon);
   font-size: 14px;
 }
+
+@media screen and (max-width: 768px) {
+  aside {
+    height: 80px;
+    bottom: 0;
+  }
+
+  aside ul li {
+    flex-direction: row;
+  }
+}

@@ -1,9 +1,9 @@
 import React, { useState, useRef, useCallback, useContext } from "react";
 import "../styles/Timer.css";
 import Modal from "react-modal";
-import tenBeepSound from "../Assets/Audio/tenSecBeep.mp3";
-import threeBeepSound from "../Assets/Audio/threeSecBeep.mp3";
-import buzzerSound from "../Assets/Audio/buzzer.mp3";
+import tenBeepSound from "../Assets/audio/tenSecBeep.mp3";
+import threeBeepSound from "../Assets/audio/threeSecBeep.mp3";
+import buzzerSound from "../Assets/audio/buzzer.mp3";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
