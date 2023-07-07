@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { ThemeContext } from "../Context/ThemeProvider";
 
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
-import { BiFullscreen } from "react-icons/bi";
+import { BiFullscreen, BiTask } from "react-icons/bi";
 
 const StyledAlarm = styled(Alarm)`
   color: #eab2a0;
@@ -27,6 +27,11 @@ const StyledWorldClock = styled(Language)`
   color: #eab2a0;
   height: 50px;
   width: 50px;
+`;
+const StyledTodo = styled(BiTask)`
+  color: #eab2a0;
+  height: 32px;
+  width: 32px;
 `;
 const StyledDarkMode = styled(DarkMode)`
   color: white;
@@ -145,7 +150,7 @@ function Layout() {
             }
             onClick={() => navigate("/todo")}
           >
-            <StyledWorldClock />
+            <StyledTodo />
             <p>To Do</p>
           </li>
         </ul>
