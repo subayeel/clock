@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 let flag = true;
 let globalData = [];
-const Clock = ({ show, AlarmData }) => {
+const Clock = ({ show, AlarmData, vibratefun }) => {
   const [showw, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -56,6 +56,7 @@ const Clock = ({ show, AlarmData }) => {
       if (flag) {
         console.log(isActive, "flag", flag);
         audioElement.play();
+        vibratefun(true);
         handleShow(true);
       }
     }
@@ -69,6 +70,7 @@ const Clock = ({ show, AlarmData }) => {
       setisActive(false);
       console.log(isActive);
       audioElement.pause();
+      vibratefun(false);
       setShow(false);
     }
   };

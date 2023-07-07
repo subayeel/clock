@@ -1,0 +1,170 @@
+.vclock {
+    background: #ececec;
+    width: 300px;
+    height: 300px;
+    margin: 8% auto 0;
+    border-radius: 50%;
+    border: 14px solid #333;
+    position: relative;
+    box-shadow: 0 2vw 4vw -1vw hsla(0, 0%, 0%, 0.8);
+    /* background-color: red !important; */
+  }
+  
+  .vdot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ccc;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 2px 4px -1px black;
+  }
+  
+  .vhour-hand {
+    position: absolute;
+    z-index: 5;
+    width: 4px;
+    height: 65px;
+    background: #333;
+    top: 75px;
+    transform-origin: 50% 72px;
+    left: 51%;
+    margin-left: -2px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+  }
+  
+  .vminute-hand {
+    position: absolute;
+    z-index: 6;
+    width: 4px;
+    height: 100px;
+    background: #666;
+    top: 40px;
+    left: 52%;
+    margin-left: -2px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    transform-origin: 50% 105px;
+  }
+  
+  .vsecond-hand {
+    position: absolute;
+    z-index: 7;
+    width: 2px;
+    height: 120px;
+    background: gold;
+    top: 17px;
+    lefT: 50%;
+    margin-left: -1px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    transform-origin: 50% 125px;
+  }
+  
+  .span {
+    display: inline-block;
+    position: absolute;
+    color: #333;
+    font-size: 22px;
+    font-family: 'Poiret One';
+    font-weight: 700;
+    z-index: 4;
+  }
+  
+  .vh12 {
+    top: 30px;
+    left: 50%;
+    margin-left: -9px;
+  }
+  .vh3 {
+    top: 140px;
+    right: 30px;
+  }
+  .vh6 {
+    bottom: 30px;
+    left: 50%;
+    margin-left: -5px;
+  }
+  .vh9 {
+    left: 32px;
+    top: 140px;
+  }
+  
+  .vdiallines {
+    position: absolute;
+    z-index: 2;
+    width: 2px;
+    height: 15px;
+    background: #666;
+    left: 50%;
+    margin-left: -1px;
+    transform-origin: 50% 150px;
+  }
+  .vdiallines:nth-of-type(5n) {
+    position: absolute;
+    z-index: 2;
+    width: 4px;
+    height: 25px;
+    background: #666;
+    left: 50%;
+    margin-left: -1px;
+    transform-origin: 50% 150px;
+  }
+  
+  .vinfo {
+    position: absolute;
+    width: 120px;
+    height: 20px;
+    border-radius: 7px;
+    background: #ccc;
+    text-align: center;
+    line-height: 20px;
+    color: #000;
+    font-size: 11px;
+    top: 200px;
+    left: 50%;
+    margin-left: -60px;
+    font-family: "Poiret One";
+    font-weight: 700;
+    z-index: 3;
+    letter-spacing: 3px;
+    margin-left: -60px;
+    left: 50%;
+  }
+  .vdate {
+      top: 80px;
+    }
+  .vday {
+      top: 200px;
+  }
+
+  #vshake{
+    animation: vshake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+@keyframes vshake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-2deg); }
+    20% { transform: translate(-3px, 0px) rotate(2deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(2deg); }
+    50% { transform: translate(-1px, 2px) rotate(-2deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-2deg); }
+    80% { transform: translate(-1px, -1px) rotate(2deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-2deg); }
+  }
+  @media (10px <= width <= 1024px){
+    .vclock,.vshake{
+        display: none;
+    }
+  }
