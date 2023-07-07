@@ -5,7 +5,11 @@ import { LuTimerReset } from 'react-icons/lu';
 import { PiFlagPennant } from 'react-icons/pi';
 import { MdDeleteOutline } from 'react-icons/md';
 // import stopwatchAudio from '../Assets/Audio/stopwatchaudio.mp3';
+import Cylinder3d from "./Cylinder3d";
+import { Canvas } from "@react-three/fiber";
 import '../styles/stopwatchstyle.css'
+import ThreeDClock from '../Animation/3dClock';
+import WorkdClock from '../Animation/WorkdClock';
 
 function Stopwatch() {
   const [isRunning, setIsRunning] = useState(false);
@@ -109,6 +113,17 @@ function Stopwatch() {
             </ul>
           </>
         )}
+      </div>
+      <div className='animated-object'>
+
+      <Canvas>
+        <pointLight position={[10, 10, 10]} />
+        <ambientLight />
+        <ambientLight />
+        <Cylinder3d active={isRunning} position={[-1.2, 0, 0]} />
+        {/* <ThreeDClock active={isRunning}  /> */}
+      </Canvas>
+      {/* <WorkdClock/> */}
       </div>
     </div>
   );

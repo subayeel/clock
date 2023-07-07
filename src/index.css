@@ -18,6 +18,10 @@ body {
   background-color: #eee;
   height: 100vh;
 }
+@font-face {
+  font-family: Digital;
+  src: url("./Assets/Fonts/digital.ttf");
+}
 
 
 nav {

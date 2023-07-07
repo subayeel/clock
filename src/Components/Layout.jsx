@@ -109,7 +109,7 @@ function Layout() {
           </li>
         </ul>
       </aside>
-      {/* <Stopanim/> */}
+
       <div
         style={{
           height: "calc(100vh - 80px) ",
@@ -121,8 +121,8 @@ function Layout() {
         }}
       >
         <Outlet />
-
       </div>
+      
     </>
   );
 }
