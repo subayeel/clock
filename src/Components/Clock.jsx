@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Card from "./Card";
-import music1 from "../asset/music2.mp3";
+import music1 from "../Assets/audio/music2.mp3";
 import Alarm from "./Alarm";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 let flag = true;
-const Clock = ({ show, AlarmData }) => {
+let globalData = [];
+const Clock = ({ show, AlarmData, vibratefun }) => {
   const [showw, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -34,6 +35,7 @@ const Clock = ({ show, AlarmData }) => {
     };
   }, []);
   function checkAlarm() {
+    globalData = JSON.parse(localStorage.getItem("item") || "[]");
     const check = new Date();
     const seconds = check.getSeconds();
     if (seconds == 0 || seconds == "00") {
@@ -49,19 +51,12 @@ const Clock = ({ show, AlarmData }) => {
       checkElem((check.getHours() % 12) + ":" + check.getMinutes() + ":" + type)
     );
     type = type.toLowerCase();
-    if (
-      checkElem(
-        (check.getHours() % 12 == 0 ? 12 : check.getHours() % 12) +
-          ":" +
-          check.getMinutes() +
-          ":" +
-          type
-      )
-    ) {
+    if (checkElem(temp.split(":")[0] + ":" + temp.split(":")[1] + ":" + type)) {
       console.log("Camh éere");
       if (flag) {
         console.log(isActive, "flag", flag);
         audioElement.play();
+        vibratefun(true);
         handleShow(true);
       }
     }
@@ -75,14 +70,18 @@ const Clock = ({ show, AlarmData }) => {
       setisActive(false);
       console.log(isActive);
       audioElement.pause();
+      vibratefun(false);
       setShow(false);
     }
   };
   const checkElem = (time) => {
     console.log(time, "Chek elem");
     for (let i = 0; i < AlarmData.length; i++) {
-      console.log(AlarmData[i] == time, AlarmData[i], time);
-      if (AlarmData[i] == time || AlarmData[AlarmData.length - 1 - i] == time) {
+      console.log(globalData[i] == time, globalData[i], time);
+      if (
+        globalData[i] == time ||
+        globalData[globalData.length - 1 - i] == time
+      ) {
         return true;
       }
     }

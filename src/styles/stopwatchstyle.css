@@ -13,8 +13,12 @@
   gap: 2rem;
 }
 
-
-.watch{
+.animated-object {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.watch {
   width: 400px;
   height: 600px;
   /* margin: 2rem auto; */
@@ -50,6 +54,7 @@
   color: black;
   font-size: 35px;
   font-weight: bold;
+  font-family: Digital;
 }
 
 .button-wrapper {
@@ -110,10 +115,21 @@
   border: 1px solid #444;
   border-radius: 50px;
   margin-bottom: 5px;
+  font-family: Digital;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #animation-bg {
-  background: linear-gradient(-45deg, #ff0000, #ee7752, #e73c7e, #23a6d5, #23d5ab, #00ff00);
+  background: linear-gradient(
+    -45deg,
+    #ff0000,
+    #ee7752,
+    #e73c7e,
+    #23a6d5,
+    #23d5ab,
+    #00ff00
+  );
   background-size: 400% 400%;
   animation: Animation 3s ease infinite;
 }

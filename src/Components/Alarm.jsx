@@ -7,7 +7,9 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Card from "./Card";
 import "../styles/alarm.css";
+import PendulumClock from "./PendulumClock";
 const initialState = { Hour: 11, Minute: 15, Type: "am" };
+
 const reducer = (state, action) => {
   let newState;
   if (action.type === "IncrementHour") {
@@ -74,6 +76,7 @@ const reducer = (state, action) => {
 
 const Alarm = () => {
   const [loadAgain, setLoadAgain] = useState(false);
+  const [vibrate, setVibrate] = useState(false);
   const [data, setData] = useState(
     JSON.parse(localStorage.getItem("item") || "[]")
   );
@@ -83,7 +86,9 @@ const Alarm = () => {
   const handleShow = () => setShow(true);
   const [state, dispatch] = useReducer(reducer, initialState);
   const handleAlarm = () => {
-    let time = `${state.Hour}:${state.Minute}:${state.Type}`;
+    let time = `${state.Hour}:${
+      state.Minute < 10 ? "0" + state.Minute : state.Minute
+    }:${state.Type}`;
     console.log(time);
     data.push(time);
     setData(data);
@@ -137,7 +142,7 @@ const Alarm = () => {
                 </div>
               </div>
               <div className="type_container">
-                <span className="spaninp">
+                <div className="spaninp">
                   <input
                     className="radio-btn"
                     type="radio"
@@ -147,8 +152,9 @@ const Alarm = () => {
                     checked={state.Type === "am"}
                   />
                   Am
-                </span>
-                <span className="spaninp">
+                </div>
+
+                <div className="spaninp">
                   {" "}
                   <input
                     className="radio-btn"
@@ -159,7 +165,7 @@ const Alarm = () => {
                     onClick={() => dispatch({ type: "setPM" })}
                   />
                   Pm
-                </span>
+                </div>
               </div>
             </div>
             <div className="mod_btn_con">
@@ -183,11 +189,13 @@ const Alarm = () => {
       <div className="left_right_clock">
         <div className="alarm_container">
           <div className="left_container">
-            <Clock show={handleShow} AlarmData={data} />
+            <Clock show={handleShow} AlarmData={data} vibratefun={setVibrate} />
           </div>
           <div className="right_containerr">
             <div className="alarm_card_containerr">
-              <h1 className="heading_myalarm">Existing Alarm</h1>
+              <h1 className="heading_myalarm">
+                {data.length > 0 ? "Existing Alarm" : "No Existing Alarm"}
+              </h1>
               {data && (
                 <div className="right_container">
                   {data?.map((obj, i) => {
@@ -205,6 +213,10 @@ const Alarm = () => {
               )}
             </div>
           </div>
+        </div>
+        <div className="pendulum_container">
+          <PendulumClock vibrateval={vibrate} />
+          {/* <AnalogClock /> */}
         </div>
       </div>
     </>

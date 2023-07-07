@@ -15,10 +15,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #eee;
+
   height: 100vh;
 }
-
+@font-face {
+  font-family: Digital;
+  src: url("./Assets/Fonts/digital.ttf");
+}
 
 nav {
   display: flex;
@@ -75,14 +78,14 @@ aside {
   position: fixed;
   height: 100vh;
   left: 0;
- 
   background-color: var(--darkBlue);
 }
 aside ul {
   list-style: none;
-
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 aside ul li {
@@ -99,9 +102,45 @@ aside ul li {
 aside ul li:hover {
   cursor: pointer;
   background-color: rgb(78, 78, 78);
-} 
+}
 aside ul li p {
   margin: 0;
   color: var(--salmon);
   font-size: 14px;
 }
+
+.outlet-container {
+  height: calc(100vh - 80px);
+  overflow: auto;
+  margin-left: 107px;
+  display: flex;
+  width: calc(100vw - 6.7rem);
+}
+
+@media screen and (max-width: 768px) {
+  aside {
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    width: 100vw;
+  }
+
+  aside ul {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  aside ul li {
+    border-bottom: none;
+    flex: 1;
+  }
+  aside ul li p{
+    display: none;
+  }
+
+  .outlet-container{
+    margin-left: 0px;
+    width: 100vw;
+  }
+}
+
+
