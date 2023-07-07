@@ -15,14 +15,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #eee;
+
   height: 100vh;
 }
 @font-face {
   font-family: Digital;
   src: url("./Assets/Fonts/digital.ttf");
 }
-
 
 nav {
   display: flex;
@@ -79,7 +78,7 @@ aside {
   position: fixed;
   height: 100vh;
   left: 0;
- 
+
   background-color: var(--darkBlue);
 }
 aside ul {
@@ -103,7 +102,7 @@ aside ul li {
 aside ul li:hover {
   cursor: pointer;
   background-color: rgb(78, 78, 78);
-} 
+}
 aside ul li p {
   margin: 0;
   color: var(--salmon);

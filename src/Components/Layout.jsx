@@ -40,6 +40,7 @@ function Layout() {
   const navigate = useNavigate();
   const { setDark, dark } = useContext(ThemeContext);
 
+  console.log(location.pathname);
   const toggleTheme = () => {
     setDark(!dark);
   };
@@ -69,9 +70,9 @@ function Layout() {
         <ul>
           <li
             style={
-              location.pathname.includes("/alarm") ? { background: "grey" } : {}
+              location.pathname == "/" ? { background: "grey" } : {}
             }
-            onClick={() => navigate("/alarm")}
+            onClick={() => navigate("/")}
           >
             <StyledAlarm></StyledAlarm>
             <p>Alarm Clock</p>
