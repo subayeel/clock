@@ -3,7 +3,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 function Card({ time, id, addata, arr }) {
   const [load, setload] = useState(false);
   const [data, setData] = useState(
-    JSON.parse(localStorage.getItem("item") || [])
+    JSON.parse(localStorage.getItem("item") || "[]")
   );
   const handleDelete = (ind) => {
     let tmp = arr?.filter((item, index) => {
