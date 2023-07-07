@@ -1,0 +1,126 @@
+.todo-email-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  .todo-email-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .todo-email-container form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .todo-email-container .form-group {
+    /* margin-bottom: 10px; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .todo-email-container label {
+    font-weight: bold;
+  }
+  
+  .todo-email-container input,
+  .todo-email-container textarea {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .todo-email-container button {
+    padding: 8px 16px;
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .todo-email-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .todo-email-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .todo-email-container li {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todo-email-container li h3 {
+    margin-top: 0;
+  }
+  
+  .todo-email-container li p {
+    margin-bottom: 8px;
+  }
+  
+  .todo-email-container li button {
+    padding: 4px 8px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+  
+  .todo-email-container li button:hover {
+    background-color: #d32f2f;
+  }
+  .form_pop_up{
+    border-radius: 20px;
+    color: white;
+    background-color:#435b66;
+    width: 350px;
+    height: 430px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .form_close_btn{
+    background-color: red;
+    margin-left: auto;
+    height: 40px !important;
+    width: 40px;
+    display: grid;
+    place-content: center;
+  }
+  .form_close_btn:hover{
+    transition: .3s;
+    margin-left: auto;
+    background-color: rgb(195, 6, 6);
+  }
+  .add_todo_btn{
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    width: 50px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: #2d4356;
+    border-radius: 50%;
+  }

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import CityTime from './CityTime';
-import '../styles/time.css';
-import citiesData from '../data/cities.json';
-import countriesData from '../data/countries.json';
-import Analog from './AnalogClock';
-import '../styles/analogClock.css'
+import React, { useState, useEffect } from "react";
+import CityTime from "./CityTime";
+import "../styles/time.css";
+import citiesData from "../data/cities.json";
+import countriesData from "../data/countries.json";
+import Analog from "./AnalogClock";
+import "../styles/analogClock.css";
 
 const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
-  const [selectedCountry, setSelectedCountry] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   const handleCountryChange = (e) => {
     const selectedValue = e.target.value;
-    setSelectedCountry(selectedValue === '' ? null : selectedValue);
+    setSelectedCountry(selectedValue === "" ? null : selectedValue);
   };
 
   const handleAddClick = () => {
@@ -26,8 +26,12 @@ const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
       <div className="modal">
         <div className="modal-content">
           <h2>Choose Your Country</h2>
-          <select value={selectedCountry || ''} onChange={handleCountryChange}>
-          {selectedCountry === null && <option disabled hidden>Select a country</option>}
+          <select value={selectedCountry || ""} onChange={handleCountryChange}>
+            {selectedCountry === null && (
+              <option disabled hidden>
+                Select a country
+              </option>
+            )}
             {countries.map((country) => (
               <option key={country.countryName}>{country.countryName}</option>
             ))}
@@ -60,18 +64,18 @@ const Time = () => {
   }, []);
 
   const optionsTime = {
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
     hour12: true,
   };
   const formattedTime = currentTime.toLocaleTimeString(undefined, optionsTime);
 
   const optionsDate = {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   };
   const formattedDate = currentTime.toLocaleDateString(undefined, optionsDate);
 
@@ -90,10 +94,12 @@ const Time = () => {
   return (
     <>
       <div className="main">
-        { <div className="centerContainer">
-          <Analog/>
-        </div> }
-        
+        {
+          <div className="centerContainer">
+            <Analog />
+          </div>
+        }
+
         <div>
           <div className="cardContainerWrapper">
             {citiesData.map((cityData) => (
