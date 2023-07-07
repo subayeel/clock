@@ -284,14 +284,19 @@
     }
     .right_container{
         width: 100% !important;
-        height: fit-content;
+        width: 100% !important;
+        overflow-y: scroll;
+        height: 300px;
     }
     .right_containerr{
         width: 100% !important;
+        
     }
     .alarm_card_containerr{
         width: 100% !important;
         padding-inline: 10px;
+        /* margin-bottom: 20px; */
+        /* overflow-y: scroll !important; */
     }
     .single_card_container{
         width: 100% !important;
@@ -312,11 +317,11 @@
 /* .alarm-card_containerr{
     width: 100% !important;
 } */
-/* @media (10px <= width <= 770px){
+@media (10px <= width <= 770px){
     .pendulum_container{
         display: none;
     }
-} */
+}
 .pendulum_container{
     width: 50%;
     height: 100%;
@@ -326,4 +331,9 @@
 }
 .type_container span{
     flex: 1;
+}
+@media (10px <= width <= 770px){
+    .pendulum_container{
+        display: none !important;
+    }
 }
