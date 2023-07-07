@@ -1,5 +1,6 @@
 .main{
-  /* border: 2px solid yellow; */
+  width: 100%;
+  height: auto;
 }
 .cardContainerWrapper {
 
@@ -147,5 +148,50 @@
     align-items: center;
     padding-top: 50px;
   }
+
+/*--------------------------------------- for search bar ---------------------------------------------------*/
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  margin-bottom: 40px;
+  /* border: 2pc solid red; */
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-button {
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #f2f2f2;
+}
+
+.fa-search {
+  color: #888888;
+  font-size: 18px;
+}
 
 
