@@ -62,35 +62,9 @@ const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
 };
 
 const Time = () => {
-  // const [currentTime, setCurrentTime] = useState(new Date());
+
   const [selectedCities, setSelectedCities] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentTime(new Date());
-  //   }, 1000); // Update every second
-
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
-
-  // const optionsTime = {
-  //   hour: 'numeric',
-  //   minute: 'numeric',
-  //   second: 'numeric',
-  //   hour12: true,
-  // };
-  // const formattedTime = currentTime.toLocaleTimeString(undefined, optionsTime);
-
-  // const optionsDate = {
-  //   weekday: 'short',
-  //   month: 'short',
-  //   day: 'numeric',
-  //   year: 'numeric',
-  // };
-  // const formattedDate = currentTime.toLocaleDateString(undefined, optionsDate);
 
   const handleCitySelect = (city) => {
     setSelectedCities([...selectedCities, city]);
@@ -104,27 +78,64 @@ const Time = () => {
     setIsModalOpen(false);
   };
 
+
+/*-----------------------For Search-----------------------------------------*/
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredCities, setFilteredCities] = useState(citiesData);
+ 
+  const handleSearchChange = (event) => {
+    const searchValue = event.target.value;
+    setSearchQuery(searchValue);
+  
+    const filteredCities = citiesData.filter((cityData) =>
+      cityData.cityName.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredCities(filteredCities);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    setSearchQuery('');
+    setFilteredCities(citiesData);
+  };
+
+/*-----------------------End-----------------------------------------*/
+
+
+
   return (
     <>
       <div className="main">
-        {
-          <div className="centerContainer">
-            <Analog />
-          </div>
-        }
-
+        <div className="centerContainer">
+          <Analog/>
+        </div>
+        <div className="search">
+          <form className="search-bar">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <button type="reset" className="search-button"  onClick={handleSearchSubmit} >
+              <i className="fas fa-close"></i>
+            </button>
+           </form>
+        </div>
+        
         <div>
           <div className="cardContainerWrapper">
-            {citiesData.map((cityData) => (
-              <CityTime
-                key={cityData.cityName}
-                cityName={cityData.cityName}
-                timezoneOffset={cityData.timezoneOffset}
-              />
-            ))}
-
-            {selectedCities.map((city) => {
-              const countryData = countriesData.find(
+          {filteredCities.map((cityData) => (
+            <CityTime
+              key={cityData.cityName}
+              cityName={cityData.cityName}
+              timezoneOffset={cityData.timezoneOffset}
+            />))}
+           
+             
+              {selectedCities.map((city) => {
+                const countryData = countriesData.find(
                 (country) => country.countryName === city
               );
               return (
