@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useContext } from "react";
 import "../styles/Timer.css";
 import Modal from "react-modal";
 import tenBeepSound from "../Assets/Audio/tenSecBeep.mp3";
@@ -7,8 +7,11 @@ import buzzerSound from "../Assets/Audio/buzzer.mp3";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
+import { ThemeContext } from "../Context/ThemeProvider";
+import { margin } from "@mui/system";
 
 const Timer = () => {
+  const { dark, setDark } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [modalContext, setModalContext] = useState(null);
   const [hours, setHours] = useState("00");
@@ -24,6 +27,8 @@ const Timer = () => {
   const threeBeep = new Audio(threeBeepSound);
   const buzzer = new Audio(buzzerSound);
   const progressRef = useRef(100);
+  const [pastTimers, setPastTimers] = useState([]);
+  const visiblePastTimers = pastTimers.filter((timer) => timer.visible);
   const [presetTimers, setPresetTimers] = useState([
     {
       id: 1,
@@ -70,11 +75,47 @@ const Timer = () => {
     setPresetTimers((prevTimers) => [...prevTimers, newPresetTimer]);
   };
 
+  const handlePastTimer = (totalSeconds) => {
+    const exists = pastTimers.some(
+      (pastTime) => pastTime.timeInSeconds === totalSeconds && pastTime.visible === true
+    );
+    console.log("EXIST: ",exists)
+    if (!exists ) {
+      const newPastTimer = {
+        id: pastTimers.length + 1,
+        timeInSeconds: totalSeconds,
+        visible: true,
+      };
+      setPastTimers((prevTimers) => [...prevTimers, newPastTimer]);
+    }
+  };
+
+  const handlePastTime = (event, pastTimer) => {
+    if (event.target.className.includes("fa-circle-play")) {
+      setTotalSeconds(pastTimer.timeInSeconds);
+      setSubmitted(true);
+      // if (timerActive) {
+      //   setTotalSeconds(pastTimer.timeInSeconds);
+      //   setSubmitted(true);
+      // }
+    } else {
+      setPastTimers((prevTimers) =>
+        prevTimers.map((timer) =>
+          timer.id === pastTimer.id
+            ? { ...timer, visible: !timer.visible }
+            : timer
+        )
+      );
+    }
+  };
+
   const resetTimer = (event) => {
     event.preventDefault();
     clearInterval(timerInterval);
     setTotalSeconds(0);
     setSelectedOption("");
+    setTimerActive(false);
+    progressRef.current = 100;
     setSubmitted(false);
   };
 
@@ -100,13 +141,18 @@ const Timer = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
-    startTimer(totalSeconds);
+    if (timerActive && submitted) {
+      progressRef.current = 100;
+      startTimer(totalSeconds);
+    } else {
+      startTimer(totalSeconds);
+    }
   };
 
   const startTimer = (totalSeconds) => {
     setTotalSeconds(totalSeconds);
     setTimerActive(true);
-
+    handlePastTimer(totalSeconds);
     // Start the timer countdown
     const interval = setInterval(() => {
       setTotalSeconds((prevTime) => {
@@ -132,8 +178,7 @@ const Timer = () => {
           threeBeep.play();
         } else if (newTime > 3 && newTime <= 10) {
           tenBeep.play();
-        }
-        console.log(totalSeconds); // Threshold value below which the progress bar appears filled
+        } // Threshold value below which the progress bar appears filled
         return newTime >= 0 ? newTime : 0;
       });
     }, 1000);
@@ -152,11 +197,15 @@ const Timer = () => {
 
   const handleOptionChange = (presetTimer) => {
     const selectedValue = presetTimer.id;
+    console.log("SO: ", selectedOption);
+    console.log("SV: ", selectedValue);
     if (selectedOption === selectedValue) {
       setSelectedOption("");
       setTotalSeconds(0);
       setSubmitted(false);
+      setTimerActive(false);
     } else {
+      console.log("ACTIVE TIMER: ", timerActive);
       setSelectedOption(selectedValue);
       setTotalSeconds(parseInt(presetTimer.totalSeconds));
       setSubmitted(true);
@@ -165,112 +214,162 @@ const Timer = () => {
 
   return (
     <>
-      <div className="main-timer-container">
-        {/* {submitted && <p className="timer-title">{title}</p>} */}
-        <div className="progress-bar">
-          {submitted ? (
-            <div className="progress-bar-container">
-              {/* <p className="timer">{formatTime(totalSeconds)}</p> */}
-              <CircularProgressbar
-                value={progressRef.current}
-                text={formatTime(totalSeconds)}
-                strokeWidth={2}
-                styles={{
-                  path: {
-                    stroke: totalSeconds <= 3 ? "red" : "var(--darkBlue)",
-                  },
-                }}
-              />
-            </div>
-          ) : (
-            <div className="progress-bar-container">
-              {/* <p className="timer">{`00:00:00`}</p> */}
-              <CircularProgressbar
-                value={0}
-                text={`00:00:00`}
-                strokeWidth={2}
-              />
-            </div>
-          )}
-        </div>
-        <div className="preset">
-          {presetTimers.map((presetTimer) => (
-            <>
-              <label
-                htmlFor={`preset-${presetTimer.id}`}
-                className={`preset-label ${
-                  selectedOption === presetTimer.id && submitted ? "active" : ""
-                }`}
-                key={presetTimer.id}
-              >
-                <input
-                  type="checkbox"
-                  id={`preset-${presetTimer.id}`}
-                  value={presetTimer.totalSeconds}
-                  checked={selectedOption === presetTimer.id}
-                  onChange={() => handleOptionChange(presetTimer)}
-                  hidden
+      <div className="main-container">
+        <div className="main-timer-container">
+          <div className="progress-bar">
+            {submitted ? (
+              <div className="progress-bar-container">
+                {/* <p className="timer">{formatTime(totalSeconds)}</p> */}
+                <CircularProgressbar
+                  value={progressRef.current}
+                  text={formatTime(totalSeconds)}
+                  strokeWidth={2}
+                  styles={{
+                    path: {
+                      stroke: totalSeconds <= 3 && "red",
+                    },
+                  }}
                 />
-                {/* <label htmlFor={`preset-${presetTimer.id}`}>
-                  {formatTime(presetTimer.totalSeconds)}
-                </label> */}
-                {formatTime(presetTimer.totalSeconds)}
-              </label>
-            </>
-          ))}
-          <div
-            onClick={() => handleOpenModal("setpreset")}
-            className="add-container"
-          >
-            <div className="add-btn">
-              <span>
-                <i
-                  class="fa-sharp fa-solid fa-plus"
-                  style={{ color: "#ffffff" }}
-                ></i>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="timer-buttons">
-          {submitted ? (
-            <>
-              <div className="btn-container">
-                <div>
-                  <button onClick={resetTimer} className="timer-btn">
-                    <i
-                      class="fa-sharp fa-solid fa-arrow-rotate-left fa-xl"
-                      style={{ color: "#ffffff" }}
-                    ></i>
-                  </button>
-                </div>
-                <div>
-                  <button onClick={handleSubmit} className="timer-btn">
-                    <i
-                      class="fa-sharp fa-regular fa-circle-play fa-xl"
-                      style={{ color: "#ffffff" }}
-                    ></i>
-                  </button>
-                </div>
               </div>
-            </>
-          ) : (
-            <>
-              <div className="btn-container">
-                <button
-                  className="timer-btn"
-                  onClick={() => handleOpenModal("settimer")}
+            ) : (
+              <div className="progress-bar-container">
+                {/* <p className="timer">{`00:00:00`}</p> */}
+                <CircularProgressbar
+                  value={0}
+                  text={`00:00:00`}
+                  strokeWidth={2}
+                />
+              </div>
+            )}
+          </div>
+          <div className="preset">
+            {presetTimers.map((presetTimer) => (
+              <>
+                <label
+                  // style={{backgroundColor: dark ? "": "#0288D1"}}
+                  htmlFor={`preset-${presetTimer.id}`}
+                  className={`preset-label ${
+                    selectedOption === presetTimer.id && submitted
+                      ? "active"
+                      : ""
+                  }`}
+                  key={presetTimer.id}
+                  data-text={formatTime(presetTimer.totalSeconds)}
                 >
+                  <input
+                    type="checkbox"
+                    id={`preset-${presetTimer.id}`}
+                    value={presetTimer.totalSeconds}
+                    checked={selectedOption === presetTimer.id}
+                    onChange={() => handleOptionChange(presetTimer)}
+                    hidden
+                  />
+                  {/* {formatTime(presetTimer.totalSeconds)} */}
+                </label>
+              </>
+            ))}
+            <div
+              onClick={() => handleOpenModal("setpreset")}
+              className="add-container"
+            >
+              <div className="add-btn">
+                <span>
                   <i
-                    class="fa-sharp fa-regular fa-timer fa-xl"
+                    className="fa-sharp fa-solid fa-plus"
                     style={{ color: "#ffffff" }}
                   ></i>
-                </button>
+                </span>
               </div>
-            </>
-          )}
+            </div>
+          </div>
+          <div className="timer-buttons">
+            {submitted ? (
+              <>
+                <div className="btn-container">
+                  <div>
+                    <button onClick={resetTimer} className="timer-btn">
+                      <i
+                        className="fa-sharp fa-solid fa-arrow-rotate-left fa-xl"
+                        style={{ color: "#ffffff" }}
+                      ></i>
+                    </button>
+                  </div>
+                  <div>
+                    {timerActive ? (
+                      <button onClick={handleSubmit} className="timer-btn">
+                        <i
+                          className="fa-solid fa-pause"
+                          style={{ color: "#ffffff" }}
+                        ></i>
+                      </button>
+                    ) : (
+                      <button onClick={handleSubmit} className="timer-btn">
+                        <i
+                          className="fa-sharp fa-regular fa-circle-play fa-xl"
+                          style={{ color: "#ffffff" }}
+                        ></i>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="btn-container">
+                  <button
+                    className="timer-btn"
+                    onClick={() => handleOpenModal("settimer")}
+                  >
+                    Set Timer
+                    <i
+                      className="fa-sharp fa-regular fa-timer"
+                      style={{ color: "#ffffff" }}
+                    ></i>
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+          <div className="pastTimerTable">
+            {visiblePastTimers.length > 0 && (
+              <MDBTable responsive hover>
+                <MDBTableHead dark>
+                  <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </MDBTableHead>
+                <MDBTableBody>
+                  {visiblePastTimers
+                    .slice()
+                    .reverse()
+                    .map((pastTimer, index) => (
+                      <>
+                        <tr>
+                          <td>{formatTime(pastTimer.timeInSeconds)}</td>
+                          <td>
+                            <i
+                              onClick={(event) =>
+                                handlePastTime(event, pastTimer)
+                              }
+                              className="fa-sharp fa-regular fa-circle-play"
+                            ></i>
+                            <i
+                              onClick={(event) =>
+                                handlePastTime(event, pastTimer)
+                              }
+                              style={{ marginLeft: "10px" }}
+                              className="fa-solid fa-trash"
+                            ></i>
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                </MDBTableBody>
+              </MDBTable>
+            )}
+          </div>
         </div>
-        
       </div>
 
       <Modal
