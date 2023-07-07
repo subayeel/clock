@@ -45,13 +45,16 @@ const Clock = ({ show, AlarmData, vibratefun }) => {
     }
     // console.log(flag);
     if (!flag) audioElement.pause();
-    const temp = check.toLocaleTimeString();
+    const temp = check.toLocaleTimeString("en-us", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: false,
+    });
     let type = temp.charAt(temp.length - 2) + "" + temp.charAt(temp.length - 1);
-    console.log(
-      checkElem((check.getHours() % 12) + ":" + check.getMinutes() + ":" + type)
-    );
+    console.log(checkElem(temp.split(":")[0] + ":" + temp.split(":")[1]));
+
     type = type.toLowerCase();
-    if (checkElem(temp.split(":")[0] + ":" + temp.split(":")[1] + ":" + type)) {
+    if (checkElem(temp.split(":")[0] + ":" + temp.split(":")[1])) {
       console.log("Camh éere");
       if (flag) {
         console.log(isActive, "flag", flag);
@@ -76,7 +79,7 @@ const Clock = ({ show, AlarmData, vibratefun }) => {
   };
   const checkElem = (time) => {
     console.log(time, "Chek elem");
-    for (let i = 0; i < AlarmData.length; i++) {
+    for (let i = 0; i < globalData.length; i++) {
       console.log(globalData[i] == time, globalData[i], time);
       if (
         globalData[i] == time ||
@@ -89,7 +92,12 @@ const Clock = ({ show, AlarmData, vibratefun }) => {
   };
   const options = { weekday: "long", month: "long", day: "numeric" };
   const formattedDate = date.toLocaleDateString(undefined, options);
-  const formattedTime = date.toLocaleTimeString();
+  const formattedTime = date.toLocaleTimeString({
+    hour: "numeric",
+    minute: "numeric",
+    seconds: "numeric",
+    hour12: true,
+  });
   return (
     <>
       <div

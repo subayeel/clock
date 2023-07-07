@@ -7,13 +7,20 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Card from "./Card";
 import "../styles/alarm.css";
-import PendulumClock from "./PendulumClock";
-const initialState = { Hour: 11, Minute: 15, Type: "am" };
+import AnalogClock from "./AnalogClock";
+const dd = new Date();
+var ampm = dd.getHours() >= 12 ? "pm" : "am";
+
+const initialState = {
+  Hour: dd.getHours(),
+  Minute: dd.getMinutes(),
+  Type: ampm,
+};
 
 const reducer = (state, action) => {
   let newState;
   if (action.type === "IncrementHour") {
-    if (state.Hour >= 12) {
+    if (state.Hour > 23) {
       newState = {
         ...state,
         Hour: 1,
@@ -88,9 +95,10 @@ const Alarm = () => {
   const handleAlarm = () => {
     let time = `${state.Hour}:${
       state.Minute < 10 ? "0" + state.Minute : state.Minute
-    }:${state.Type}`;
-    console.log(time);
-    data.push(time);
+    }`;
+    let val = document.getElementById("time").value;
+    console.log(val);
+    data.push(val);
     setData(data);
     localStorage.setItem("item", JSON.stringify(data));
   };
@@ -111,62 +119,7 @@ const Alarm = () => {
             style={{ display: show ? "block" : "none" }}
           >
             <div className="action_container">
-              <div className="Hour_container">
-                <div
-                  className="up_arrow"
-                  onClick={() => dispatch({ type: "IncrementHour" })}
-                >
-                  <KeyboardArrowUpIcon />
-                </div>
-                <div className="display_hour">{state.Hour}</div>
-                <div
-                  className="down_arrow"
-                  onClick={() => dispatch({ type: "DecrementHour" })}
-                >
-                  <KeyboardArrowDownIcon />
-                </div>
-              </div>
-              <div className="minute_container">
-                <div
-                  className="up_arrow"
-                  onClick={() => dispatch({ type: "IncrementMinute" })}
-                >
-                  <KeyboardArrowUpIcon />
-                </div>
-                <div className="display_hour">{state.Minute}</div>
-                <div
-                  className="down_arrow"
-                  onClick={() => dispatch({ type: "DecrementMinute" })}
-                >
-                  <KeyboardArrowDownIcon />
-                </div>
-              </div>
-              <div className="type_container">
-                <div className="spaninp">
-                  <input
-                    className="radio-btn"
-                    type="radio"
-                    id=""
-                    name="test"
-                    onClick={() => dispatch({ type: "setAM" })}
-                    checked={state.Type === "am"}
-                  />
-                  Am
-                </div>
-
-                <div className="spaninp">
-                  {" "}
-                  <input
-                    className="radio-btn"
-                    type="radio"
-                    id=""
-                    name="test"
-                    checked={state.Type === "pm"}
-                    onClick={() => dispatch({ type: "setPM" })}
-                  />
-                  Pm
-                </div>
-              </div>
+              <input type="time" id="time" />
             </div>
             <div className="mod_btn_con">
               <button className="btn1" onClick={handleClose}>
@@ -215,8 +168,8 @@ const Alarm = () => {
           </div>
         </div>
         <div className="pendulum_container">
-          <PendulumClock vibrateval={vibrate} />
-          {/* <AnalogClock /> */}
+          {/* <PendulumClock vibrateval={vibrate} /> */}
+          <AnalogClock vibrateval={vibrate} />
         </div>
       </div>
     </>
