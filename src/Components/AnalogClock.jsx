@@ -23,7 +23,7 @@ const AnalogClock = ({ vibrateval }) => {
   const ss = time.getSeconds();
 
   return (
-    <div className="clock">
+    <div className="clock" id={vibrateval ? "vshake" : ""}>
       <div
         className="hour"
         style={{ transform: getRotation(hh + mm / 60, 12) }}
