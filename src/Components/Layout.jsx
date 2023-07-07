@@ -5,7 +5,6 @@ import { Alarm, AvTimer, DarkMode, Language, Timer } from "@mui/icons-material";
 import styled from "styled-components";
 import { ThemeContext } from "../Context/ThemeProvider";
 
-
 const StyledAlarm = styled(Alarm)`
   color: #eab2a0;
   height: 50px;
@@ -69,9 +68,7 @@ function Layout() {
       >
         <ul>
           <li
-            style={
-              location.pathname == "/" ? { background: "grey" } : {}
-            }
+            style={location.pathname == "/" ? { background: "grey" } : {}}
             onClick={() => navigate("/")}
           >
             <StyledAlarm></StyledAlarm>
@@ -111,19 +108,9 @@ function Layout() {
         </ul>
       </aside>
 
-      <div
-        style={{
-          height: "calc(100vh - 80px) ",
-          overflow: "auto",
-          marginLeft: "107px",
-
-          display: "flex",
-          width: "calc(100vw - 6.7rem)",
-        }}
-      >
+      <div className="outlet-container">
         <Outlet />
       </div>
-      
     </>
   );
 }
