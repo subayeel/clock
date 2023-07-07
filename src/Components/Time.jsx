@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
     setSelectedCountry(selectedValue);
   };
 
-  const handleAddClick = (event) => {
+  const handleAddClick = () => {
     if (selectedCountry === "") {
       alert("Please select a country");
     } else {
@@ -25,31 +25,29 @@ const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
       );
       setFilteredCountries(updatedCountries);
       setSelectedCountry("");
+      onClose();
     }
-    onClose();
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
       <div className="modal">
         <div className="modal-content">
           <h2>Choose Your Country</h2>
-          <select value={selectedCountry || ""} onChange={handleCountryChange}>
-            {selectedCountry === null && (
-              <option disabled hidden>
+          <select onChange={handleCountryChange}>
+
+              <option disabled selected>
                 Select a country
               </option>
-            )}
-            {countries.map((country) => (
+            {filteredCountries.map((country) => (
               <option key={country.countryName}>{country.countryName}</option>
             ))}
           </select>
           <div className="modal-buttons">
             <button
               className="add-button"
-              onClick={(event) => handleAddClick(event)}
+              onClick={handleAddClick}
             >
               Add
             </button>
@@ -57,7 +55,6 @@ const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
@@ -166,6 +163,8 @@ const Time = () => {
           </div>
         </div>
       </div>
+
+      
     </>
   );
 };
