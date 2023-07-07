@@ -41,6 +41,7 @@ function Layout() {
 
   console.log(location.pathname);
   const toggleTheme = () => {
+    localStorage.setItem("dark", !dark);
     setDark(!dark);
   };
   return (

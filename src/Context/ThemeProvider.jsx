@@ -1,11 +1,17 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext({});
 
 export const ThemeProvider = ({ children }) => {
+  console.log(localStorage.getItem("dark"));
   const [dark, setDark] = useState(
-    JSON.parse(localStorage.getItem("persist")) || false
+    JSON.parse(localStorage.getItem("dark")) || false
   );
+  useEffect(() => {
+    if (localStorage.getItem("dark") === null) {
+      localStorage.setItem("dark", true);
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ dark, setDark }}>
