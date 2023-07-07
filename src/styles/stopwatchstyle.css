@@ -5,19 +5,14 @@
 }
 
 .container-time {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 1fr 1fr;
-  margin: auto;
-  gap: 2rem;
-}
-
-.container {
   font-size: 16px;
   height: 100vh;
-  margin: auto;
-  padding-top: 15px;
+  padding-top: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
 }
+
 .animated-object {
   display: flex;
   align-items: center;
@@ -26,11 +21,12 @@
 .watch {
   width: 400px;
   height: 600px;
-  margin: 2rem auto;
   box-shadow: 1px 0px 15px;
   text-align: center;
   padding: 50px;
-  border: 4px solid #435b66;
+  border: 1px solid #435b66;
+  border-radius: 5%;
+  margin-left: 5em;
 }
 
 .outer-circle {
@@ -82,6 +78,20 @@
   background-color: #eab2a0;
 }
 
+.lightbtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 1px 0px 5px #444;
+  background-color: rgb(2, 136, 209);
+  cursor: pointer;
+  margin: 10px;
+}
+.lightbtn:hover {
+  background-color: #eab2a0;
+}
+
 .lap-heading {
   list-style: none;
   width: 100%;
@@ -107,6 +117,7 @@
 .laps::-webkit-scrollbar {
   display: none;
 }
+
 
 .lap-items {
   display: flex;
@@ -135,7 +146,6 @@
   background-size: 400% 400%;
   animation: Animation 3s ease infinite;
 }
-
 @keyframes Animation {
   0% {
     background-position: 0% 50%;
@@ -147,3 +157,80 @@
     background-position: 0% 50%;
   }
 }
+
+
+.gears {
+  width: 100%;
+  height: 600px;
+  padding: 2em;
+  position: relative;
+  color: rgb(45, 67, 86);
+}
+
+.lightgears {
+  width: 100%;
+  height: 600px;
+  padding: 2em;
+  position: relative;
+  color: rgb(2, 136, 209);
+}
+
+.gear1,
+.gear2,
+.gear3,
+.gear4
+{
+  position: absolute;
+}
+
+.gear1 {
+  top: 100px;
+}
+
+.gear2 {
+  top: 300px;
+  left: 300px;
+}
+
+.gear3 {
+  top: 205px;
+  left: 448px;
+}
+
+.gear4 {
+  top: 30px;
+  left: 310px;
+}
+
+#spin {
+  animation: spin 4s linear infinite;
+}
+
+#spin-back {
+  animation: spin-back 4s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-back {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@media screen and (max-width:768px) {
+  .gears {
+    display :none;
+  }
+  .container-time {
+    grid-template-columns: 1fr;
+    margin: auto;
+  }
+  .watch {
+    margin: 0;
+  }
+} 
