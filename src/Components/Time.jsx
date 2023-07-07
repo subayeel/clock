@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CityTime from './CityTime';
 import '../styles/time.css';
 import citiesData from '../data/cities.json';
@@ -7,18 +7,26 @@ import Analog from './AnalogClock';
 import '../styles/analogClock.css'
 
 const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
-  const [selectedCountry, setSelectedCountry] = useState('Afghanistan');
+  const [selectedCountry, setSelectedCountry] = useState('');
+  const [filteredCountries, setFilteredCountries] = useState(countriesData);
 
   const handleCountryChange = (e) => {
     const selectedValue = e.target.value;
-    console.log("selected value: " +selectedValue);
-    if (selectedValue !== null) {
-      setSelectedCountry(selectedValue);
-    }
+    setSelectedCountry(selectedValue);
   };
 
-  const handleAddClick = () => {
-    handleCitySelect(selectedCountry);
+  const handleAddClick = (event) => {
+    if(selectedCountry === ""){
+      alert("Please select a country");
+    }
+    else{
+      handleCitySelect(selectedCountry);
+    const updatedCountries = countriesData.filter(
+      (country) => country.countryName !== selectedCountry
+    );
+    setFilteredCountries(updatedCountries);
+    setSelectedCountry("");
+    }
     onClose();
   };
 
@@ -29,14 +37,20 @@ const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
       <div className="modal">
         <div className="modal-content">
           <h2>Choose Your Country</h2>
-          <select  onChange={handleCountryChange}>
-            {<option disabled>Select a country</option>}
-            {countries.map((country) => (
-              <option key={country.countryName}>{country.countryName}</option>
+          <select onChange={handleCountryChange}>
+            <option selected disabled>Select a country</option>
+            {filteredCountries.map((country) => (
+              <option
+                key={country.countryName}
+                value={country.countryName}
+                selected={selectedCountry === country.countryName}
+              >
+                {country.countryName}
+              </option>
             ))}
           </select>
           <div className="modal-buttons">
-            <button className="add-button" onClick={handleAddClick}>
+            <button className="add-button" onClick={(event) => handleAddClick(event)}>
               Add
             </button>
             <button onClick={onClose}>Close</button>
@@ -46,6 +60,8 @@ const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
     </div>
   );
 };
+
+
 
 const Time = () => {
   // const [currentTime, setCurrentTime] = useState(new Date());

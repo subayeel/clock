@@ -1,24 +1,17 @@
 [
-    { "countryName": "Afghanistan", "timezoneOffset": -30 },
-    { "countryName": "Albania", "timezoneOffset": -210 },
-    { "countryName": "Algeria", "timezoneOffset": -150 },
-    { "countryName": "Andorra", "timezoneOffset": -210 },
-    { "countryName": "Angola", "timezoneOffset": -90 },
-    { "countryName": "Antigua and Barbuda", "timezoneOffset": 680 },
-    { "countryName": "Argentina", "timezoneOffset": 810 },
-    { "countryName": "Armenia", "timezoneOffset": -30 },
-    { "countryName": "Australia", "timezoneOffset": 330 },
-    { "countryName": "Austria", "timezoneOffset": -210 },
-    { "countryName": "Azerbaijan", "timezoneOffset": -30 },
-    { "countryName": "Bahamas", "timezoneOffset": 680 },
-    { "countryName": "Bahrain", "timezoneOffset": 210 },
-    { "countryName": "Bangladesh", "timezoneOffset": 0 },
-    { "countryName": "Barbados", "timezoneOffset": 680 }
+  { "countryName": "Afghanistan", "timezoneOffset": -60, "favourite": false },
+  { "countryName": "Albania", "timezoneOffset": -210, "favourite": false },
+  { "countryName": "Algeria", "timezoneOffset": -150, "favourite": false },
+  { "countryName": "Andorra", "timezoneOffset": -210, "favourite": false },
+  { "countryName": "Angola", "timezoneOffset": -90, "favourite": false },
+  { "countryName": "Antigua and Barbuda", "timezoneOffset": 680, "favourite": false },
+  { "countryName": "Argentina", "timezoneOffset": 810, "favourite": false },
+  { "countryName": "Armenia", "timezoneOffset": -30, "favourite": false },
+  { "countryName": "Australia", "timezoneOffset": 330, "favourite": false },
+  { "countryName": "Austria", "timezoneOffset": -210, "favourite": false },
+  { "countryName": "Azerbaijan", "timezoneOffset": -30, "favourite": false },
+  { "countryName": "Bahamas", "timezoneOffset": 680, "favourite": false },
+  { "countryName": "Bahrain", "timezoneOffset": 210, "favourite": false },
+  { "countryName": "Bangladesh", "timezoneOffset": 0, "favourite": false },
+  { "countryName": "Barbados", "timezoneOffset": 680, "favourite": false }
 ]
-  
-  
-  
-  
-  
-  
-  
