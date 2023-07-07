@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../index.css'
+import '../index.css';
 
 const getTimeByTimezoneOffset = (timezoneOffset) => {
   const currentTime = new Date();
@@ -10,6 +10,7 @@ const getTimeByTimezoneOffset = (timezoneOffset) => {
 
 const CityTime = ({ cityName, timezoneOffset }) => {
   const [cityTime, setCityTime] = useState('');
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,18 +22,30 @@ const CityTime = ({ cityName, timezoneOffset }) => {
     };
   }, [timezoneOffset]);
 
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+  
   return (
     <>
-        <div class="cardContainer">
-          <div className='cityName'>{cityName}</div>
-             <div class="cityTime">
-             <div>{cityTime}</div>
-           </div>
+      <div className="cardContainer">
+        <div className="cityName">
+          <div>{cityName}</div>
+          <div>
+            <i
+              className={`fa-heart ${isFavorite ? 'fa-solid' : 'fa-regular'}`}
+              style={{ color: 'red', cursor: 'pointer' }}
+              onClick={toggleFavorite}
+            ></i>
+          </div>
         </div>
-
-        
+        <div className="cityTime">
+          <div>{cityTime}</div>
+        </div>
+      </div>
     </>
   );
 };
 
-export default CityTime
+export default CityTime;
