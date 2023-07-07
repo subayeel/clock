@@ -9,6 +9,7 @@ import Holidays from "./Components/Holidays";
 import Stopwatch from "./Components/stopwatch";
 import { useContext } from "react";
 import { ThemeContext } from "./Context/ThemeProvider";
+import TodoEmail from "./Components/TodoEmail";
 
 function App() {
   const { dark } = useContext(ThemeContext);
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Alarm />}></Route>
             <Route path="/time" element={<Time />}></Route>
             <Route path="/holidays" element={<Holidays />}></Route>
+            <Route path="/todo" element={<TodoEmail />}></Route>
           </Route>
         </Routes>
       </Router>
