@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import CityTime from './CityTime';
-import '../styles/time.css';
-import citiesData from '../data/cities.json';
-import countriesData from '../data/countries.json';
-import Analog from './AnalogClock';
-import '../styles/analogClock.css'
+import React, { useState } from "react";
+import CityTime from "./CityTime";
+import "../styles/time.css";
+import citiesData from "../data/cities.json";
+import countriesData from "../data/countries.json";
+import Analog from "./AnalogClock";
+import "../styles/analogClock.css";
 
-const Modal = ({ isOpen, onClose, handleCitySelect}) => {
-  const [selectedCountry, setSelectedCountry] = useState('');
+const Modal = ({ isOpen, onClose, handleCitySelect, countries }) => {
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countriesData);
 
   const handleCountryChange = (e) => {
@@ -16,10 +16,9 @@ const Modal = ({ isOpen, onClose, handleCitySelect}) => {
   };
 
   const handleAddClick = (event) => {
-    if(selectedCountry === ""){
+    if (selectedCountry === "") {
       alert("Please select a country");
-    }
-    else{
+    } else {
       handleCitySelect(selectedCountry);
       const updatedCountries = countriesData.filter(
         (country) => country.countryName !== selectedCountry
@@ -37,20 +36,21 @@ const Modal = ({ isOpen, onClose, handleCitySelect}) => {
       <div className="modal">
         <div className="modal-content">
           <h2>Choose Your Country</h2>
-          <select onChange={handleCountryChange}>
-            <option selected disabled>Select a country</option>
-            {filteredCountries.map((country) => (
-              <option
-                key={country.countryName}
-                value={country.countryName}
-                selected={selectedCountry === country.countryName}
-              >
-                {country.countryName}
+          <select value={selectedCountry || ""} onChange={handleCountryChange}>
+            {selectedCountry === null && (
+              <option disabled hidden>
+                Select a country
               </option>
+            )}
+            {countries.map((country) => (
+              <option key={country.countryName}>{country.countryName}</option>
             ))}
           </select>
           <div className="modal-buttons">
-            <button className="add-button" onClick={(event) => handleAddClick(event)}>
+            <button
+              className="add-button"
+              onClick={(event) => handleAddClick(event)}
+            >
               Add
             </button>
             <button onClick={onClose}>Close</button>
@@ -60,8 +60,6 @@ const Modal = ({ isOpen, onClose, handleCitySelect}) => {
     </div>
   );
 };
-
-
 
 const Time = () => {
 
@@ -111,7 +109,6 @@ const Time = () => {
         { <div className="centerContainer">
           <Analog/>
         </div> }
-        
         <div className="search">
           <form className="search-bar">
             <input
@@ -126,7 +123,7 @@ const Time = () => {
             </button>
            </form>
         </div>
-
+        
         <div>
           <div className="cardContainerWrapper">
           {filteredCities.map((cityData) => (
