@@ -4,7 +4,7 @@ import { BsStop } from 'react-icons/bs';
 import { LuTimerReset } from 'react-icons/lu';
 import { PiFlagPennant } from 'react-icons/pi';
 import { MdDeleteOutline } from 'react-icons/md';
-// import stopwatchAudio from '../Assets/Audio/stopwatchaudio.mp3';
+import { BsGear } from 'react-icons/bs';
 import '../styles/stopwatchstyle.css'
 
 function Stopwatch() {
@@ -15,14 +15,12 @@ function Stopwatch() {
   const [isStoped, setIsStoped] = useState(true);
   const [isAnimation, setAnimation] = useState(false);
   const intervalRef = useRef(null);
-  // const audio = new Audio(stopwatchAudio);
 
   const start = () => {
     if (!isRunning) {
       intervalRef.current = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
       }, 10);
-      // audio.play();
       setIsRunning(true);
       setIsStarted(true);
       setIsStoped(false);
@@ -33,10 +31,10 @@ function Stopwatch() {
   const stop = () => {
     if (isRunning) {
       clearInterval(intervalRef.current);
-      // audio.pause(); 
       setIsRunning(false);
       setIsStarted(false);
       setIsStoped(true);
+      setAnimation(false);
     }
   };
 
@@ -109,6 +107,13 @@ function Stopwatch() {
             </ul>
           </>
         )}
+      </div>
+      <div className='gears'>
+        <BsGear id={isAnimation ? 'spin' : ''}  size='350px' className='gear1'/>
+        <BsGear id={isAnimation ? 'spin-back' : ''} size='250px' className='gear2'/>
+        <BsGear id={isAnimation ? 'spin' : ''} size='150px' className='gear3'/>
+        <BsGear id={isAnimation ? 'spin' : ''} size='250px' className='gear4'/>
+        <BsGear id={isAnimation ? 'spin-back' : ''} size='220px' className='gear5'/>
       </div>
     </div>
   );
