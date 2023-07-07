@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Card from "./Card";
-import music1 from "../Assets/audio/music2.mp3";
+import music1 from "../Assets/Audio/music2.mp3";
 import Alarm from "./Alarm";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
