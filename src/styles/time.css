@@ -91,6 +91,8 @@
     justify-content: center;
     align-items: center;
     z-index: 1000; /* Ensure the modal is on top of other elements */
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
   }
   
   .modal-content {
@@ -140,6 +142,8 @@
   .custom-button {
     background-color: green;
     color: #fff;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
   }
 
   .center {
