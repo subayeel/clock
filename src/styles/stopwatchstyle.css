@@ -7,10 +7,10 @@
 .container-time {
   font-size: 16px;
   height: 100vh;
-  padding-top: 15px;
+  padding-top: 25px;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
 }
 
 .animated-object {
@@ -21,7 +21,6 @@
 .watch {
   width: 400px;
   height: 600px;
-  /* margin: 2rem auto; */
   box-shadow: 1px 0px 15px;
   text-align: center;
   padding: 50px;
@@ -76,6 +75,20 @@
   margin: 10px;
 }
 .btn:hover {
+  background-color: #eab2a0;
+}
+
+.lightbtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 1px 0px 5px #444;
+  background-color: rgb(2, 136, 209);
+  cursor: pointer;
+  margin: 10px;
+}
+.lightbtn:hover {
   background-color: #eab2a0;
 }
 
@@ -145,44 +158,48 @@
   }
 }
 
+
 .gears {
-  max-width: 100%;
+  width: 100%;
+  height: 600px;
   padding: 2em;
   position: relative;
+  color: rgb(45, 67, 86);
+}
+
+.lightgears {
+  width: 100%;
+  height: 600px;
+  padding: 2em;
+  position: relative;
+  color: rgb(2, 136, 209);
 }
 
 .gear1,
 .gear2,
 .gear3,
-.gear4,
-.gear5 {
-  color: rgb(45, 67, 86);
-  display: block;
+.gear4
+{
   position: absolute;
 }
 
 .gear1 {
-  top: 10%;
+  top: 100px;
 }
 
 .gear2 {
-  bottom: 29%;
-  left: 34%;
+  top: 300px;
+  left: 300px;
 }
 
 .gear3 {
-  bottom: 56%;
-  left: 50%;
+  top: 205px;
+  left: 448px;
 }
 
 .gear4 {
-  top: 43%;
-  right: 15%;
-}
-
-.gear5 {
-  top: 0%;
-  left: 34%;
+  top: 30px;
+  left: 310px;
 }
 
 #spin {
@@ -211,5 +228,9 @@
   }
   .container-time {
     grid-template-columns: 1fr;
+    margin: auto;
   }
-}
+  .watch {
+    margin: 0;
+  }
+} 
