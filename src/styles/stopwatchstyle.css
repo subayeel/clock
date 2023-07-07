@@ -5,19 +5,14 @@
 }
 
 .container-time {
+  font-size: 16px;
+  height: 100vh;
+  padding-top: 15px;
   display: grid;
-  width: 100%;
-  grid-template-columns: 1fr 1fr;
-  margin: auto;
+  grid-template-columns: 1fr 2fr;
   gap: 2rem;
 }
 
-.container {
-  font-size: 16px;
-  height: 100vh;
-  margin: auto;
-  padding-top: 15px;
-}
 .animated-object {
   display: flex;
   align-items: center;
@@ -26,11 +21,13 @@
 .watch {
   width: 400px;
   height: 600px;
-  margin: 2rem auto;
+  /* margin: 2rem auto; */
   box-shadow: 1px 0px 15px;
   text-align: center;
   padding: 50px;
-  border: 4px solid #435b66;
+  border: 1px solid #435b66;
+  border-radius: 5%;
+  margin-left: 5em;
 }
 
 .outer-circle {
@@ -108,6 +105,7 @@
   display: none;
 }
 
+
 .lap-items {
   display: flex;
   justify-content: space-evenly;
@@ -135,7 +133,6 @@
   background-size: 400% 400%;
   animation: Animation 3s ease infinite;
 }
-
 @keyframes Animation {
   0% {
     background-position: 0% 50%;
@@ -145,5 +142,74 @@
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+.gears {
+  max-width: 100%;
+  padding: 2em;
+  position: relative;
+}
+
+.gear1,
+.gear2,
+.gear3,
+.gear4,
+.gear5 {
+  color: rgb(45, 67, 86);
+  display: block;
+  position: absolute;
+}
+
+.gear1 {
+  top: 10%;
+}
+
+.gear2 {
+  bottom: 29%;
+  left: 34%;
+}
+
+.gear3 {
+  bottom: 56%;
+  left: 50%;
+}
+
+.gear4 {
+  top: 43%;
+  right: 15%;
+}
+
+.gear5 {
+  top: 0%;
+  left: 34%;
+}
+
+#spin {
+  animation: spin 4s linear infinite;
+}
+
+#spin-back {
+  animation: spin-back 4s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-back {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@media screen and (max-width:768px) {
+  .gears {
+    display :none;
+  }
+  .container-time {
+    grid-template-columns: 1fr;
   }
 }
